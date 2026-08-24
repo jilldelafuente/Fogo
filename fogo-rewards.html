@@ -22,8 +22,8 @@
 
     <div class="nav-actions">
       <a href="#" class="btn btn-clay nav-reservations">Reservations</a>
-      <button type="button" class="nav-ai-btn" aria-label="AI Concierge">
-        <img src="Icons/aistars.svg" alt="" class="nav-ai-icon">
+      <button type="button" class="nav-ai-btn" id="navAiBtn" aria-label="Ask Gaúcho">
+        <img src="Icons/ai.png" alt="" class="nav-ai-icon">
       </button>
     </div>
   </div>
@@ -75,6 +75,38 @@
     </a>
   </div>
 </div>
+
+<!-- AI CONCIERGE (Gaúcho) -->
+<div class="ai-backdrop" id="aiBackdrop"></div>
+<aside class="ai-panel" id="aiPanel">
+  <header class="ai-panel-header">
+    <span class="ai-panel-identity">
+      <span class="ai-panel-avatar"><img src="Icons/ai.png" alt=""></span>
+      <span class="ai-panel-name">Ga&uacute;cho</span>
+    </span>
+    <button type="button" class="ai-panel-close" id="aiCloseBtn" aria-label="Close">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="ai-panel-messages" id="aiMessages"></div>
+
+  <div class="ai-panel-quick-replies" id="aiQuickReplies">
+    <button type="button" class="ai-chip" data-q="Can you help me reserve a table?">Reserve a table</button>
+    <button type="button" class="ai-chip" data-q="What is churrasco?">What is churrasco?</button>
+    <button type="button" class="ai-chip" data-q="What's on the menu?">Menu highlights</button>
+    <button type="button" class="ai-chip" data-q="Tell me about Fogo Rewards">Fogo Rewards</button>
+    <button type="button" class="ai-chip" data-q="Do you host private events?">Private events</button>
+    <button type="button" class="ai-chip" data-q="What are your hours?">Hours &amp; locations</button>
+  </div>
+
+  <form class="ai-panel-input-row" id="aiForm">
+    <input type="text" id="aiInput" placeholder="Ask Ga&uacute;cho anything&hellip;" autocomplete="off">
+    <button type="submit" class="ai-send-btn" aria-label="Send">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15.5M13 5.5 19.5 12 13 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+</aside>
 
 <div class="loyalty">
 
@@ -221,5 +253,6 @@
 
 <script src="script.js"></script>
 <script src="rewards.js"></script>
+<script src="ai-concierge.js"></script>
 </body>
 </html>

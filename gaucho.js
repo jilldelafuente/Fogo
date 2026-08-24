@@ -1,14 +1,14 @@
 // Gaúcho — in-restaurant AI meal assistant (mobile experience)
 
-const GAUCHO_GREETING = "Hey there! I'm Gaúcho, your table's meal assistant tonight. Ask me about the menu, get a wine pairing, flag a dietary need, or just say hi. What can I help with?";
+const GAUCHO_GREETING = "I'm Gaúcho, your table's meal assistant tonight. Ask me about the menu, get a wine pairing, flag a dietary need, or just say hi. What can I help with?";
 
 const GAUCHO_RESPONSES = [
   {
     hit: ['churrasco', 'what is churrasco', 'how does this work', 'how does churrasco work'],
-    reply: "Churrasco is the Southern Brazilian tradition of fire-roasting seasoned cuts of meat and carving them tableside — continuously, until you say stop. Want to see tonight's cuts in more depth? Tap “See the Cuts” below.",
+    reply: "Churrasco is the Southern Brazilian tradition of fire-roasting seasoned cuts of meat and carving them tableside — continuously, until you say stop. Want to see tonight's cuts in more depth? Tap “See tonight’s cuts” below.",
   },
   {
-    hit: ['cut', 'cuts', 'picanha', 'meat'],
+    hit: ['cut', 'cuts', 'picanha', 'frango', 'chicken', 'meat'],
     reply: "Great choice — let's pull up tonight's cuts.",
     action: 'cuts',
   },
@@ -102,7 +102,7 @@ function sendGauchoUserMessage(text) {
 function startGauchoChat() {
   gauchoWelcome.classList.add('hide');
   gauchoChat.classList.add('active');
-  gauchoMessages.innerHTML = '';
+  gauchoMessages.innerHTML = '<h2 class="gaucho-hola">Hola!</h2>';
   showGauchoTyping();
   setTimeout(() => {
     hideGauchoTyping();
@@ -140,68 +140,90 @@ if (gauchoQuickReplies) {
 }
 
 /* ---------- Cuts education panel ---------- */
-const BEEF_CUTS = [
-  {
-    name: 'Picanha',
-    sub: 'Top Sirloin Cap',
-    copy: "Picanha is the cut churrasco is built around. Lightly seasoned and sliced in front of you, it's tender with just enough marbling to stay juicy without being heavy.",
-    chartTitle: 'Top Sirloin',
-    chartDesc: 'It offers a bold, beefy flavor and a firm texture',
-    richness: 'Moderate',
-    seasoning: 'Rock Salt',
-    method: 'Skewer',
+const CUTS_DATA = {
+  beef: {
+    hero: 'images/gaucho/beef-hero.png',
+    chart: 'images/gaucho/beef-chart.png',
+    cuts: [
+      {
+        name: 'Picanha',
+        sub: 'Top Sirloin Cap',
+        copy: "Picanha is the cut churrasco is built around. Lightly seasoned and sliced in front of you, it's tender with just enough marbling to stay juicy without being heavy.",
+        chartTitle: 'Top Sirloin',
+        chartDesc: 'It offers a bold, beefy flavor and a firm texture',
+        richness: 'Moderate',
+        seasoning: 'Rock Salt',
+        method: 'Skewer',
+      },
+      {
+        name: 'Filet Mignon',
+        sub: 'Tenderloin',
+        copy: "The most tender cut on the table. Filet mignon is lean, buttery-soft, and mild — a quiet counterpoint to picanha's boldness.",
+        chartTitle: 'Tenderloin',
+        chartDesc: 'Delicate texture with very little marbling',
+        richness: 'Lean',
+        seasoning: 'Sea Salt',
+        method: 'Skewer',
+      },
+      {
+        name: 'Alcatra',
+        sub: 'Top Rump',
+        copy: 'A Fogo staple since day one. Alcatra is cut thick and roasted whole, giving you a rich, traditional churrasco flavor in every slice.',
+        chartTitle: 'Top Rump',
+        chartDesc: 'Full-bodied flavor, roasted whole for depth',
+        richness: 'Rich',
+        seasoning: 'Garlic & Salt',
+        method: 'Whole Roast',
+      },
+      {
+        name: 'Fraldinha',
+        sub: 'Bottom Sirloin Flap',
+        copy: 'Loved for its marbling, fraldinha carries a bolder, more intense flavor than picanha — a favorite for guests who want more char and more fat.',
+        chartTitle: 'Bottom Sirloin',
+        chartDesc: 'Heavily marbled with a bold, beefy finish',
+        richness: 'Bold',
+        seasoning: 'Rock Salt',
+        method: 'Skewer',
+      },
+      {
+        name: 'Beef Ancho',
+        sub: 'Ribeye Cap',
+        copy: 'Grilled directly over open flame, beef ancho picks up a deep char and stays impossibly juicy underneath — one of the richest cuts we carve.',
+        chartTitle: 'Ribeye Cap',
+        chartDesc: 'Heavily marbled, char-forward, very rich',
+        richness: 'Very Rich',
+        seasoning: 'Cracked Pepper',
+        method: 'Direct Flame',
+      },
+      {
+        name: 'Costela',
+        sub: 'Beef Ribs',
+        copy: "Costela spends hours over the fire until it's falling off the bone. Slow-cooked, smoky, and worth the wait every time.",
+        chartTitle: 'Beef Ribs',
+        chartDesc: 'Slow-cooked for hours until fall-off-the-bone tender',
+        richness: 'Rich',
+        seasoning: 'Rock Salt',
+        method: 'Slow Fire',
+      },
+    ],
   },
-  {
-    name: 'Filet Mignon',
-    sub: 'Tenderloin',
-    copy: "The most tender cut on the table. Filet mignon is lean, buttery-soft, and mild — a quiet counterpoint to picanha's boldness.",
-    chartTitle: 'Tenderloin',
-    chartDesc: 'Delicate texture with very little marbling',
-    richness: 'Lean',
-    seasoning: 'Sea Salt',
-    method: 'Skewer',
+  chicken: {
+    hero: 'images/gaucho/chicken-hero.png',
+    chart: 'images/gaucho/chicken-chart.png',
+    cuts: [
+      {
+        name: 'Frango',
+        sub: 'Chicken',
+        copy: 'Slow-roasted over an open flame for crispy skin and juicy dark meat.',
+        chartTitle: 'Leg & Thigh',
+        chartDesc: 'Stays moist during high-heat or long cooking',
+        richness: 'High',
+        seasoning: 'Peri-peri',
+        method: 'Skewer',
+      },
+    ],
   },
-  {
-    name: 'Alcatra',
-    sub: 'Top Rump',
-    copy: 'A Fogo staple since day one. Alcatra is cut thick and roasted whole, giving you a rich, traditional churrasco flavor in every slice.',
-    chartTitle: 'Top Rump',
-    chartDesc: 'Full-bodied flavor, roasted whole for depth',
-    richness: 'Rich',
-    seasoning: 'Garlic & Salt',
-    method: 'Whole Roast',
-  },
-  {
-    name: 'Fraldinha',
-    sub: 'Bottom Sirloin Flap',
-    copy: 'Loved for its marbling, fraldinha carries a bolder, more intense flavor than picanha — a favorite for guests who want more char and more fat.',
-    chartTitle: 'Bottom Sirloin',
-    chartDesc: 'Heavily marbled with a bold, beefy finish',
-    richness: 'Bold',
-    seasoning: 'Rock Salt',
-    method: 'Skewer',
-  },
-  {
-    name: 'Beef Ancho',
-    sub: 'Ribeye Cap',
-    copy: 'Grilled directly over open flame, beef ancho picks up a deep char and stays impossibly juicy underneath — one of the richest cuts we carve.',
-    chartTitle: 'Ribeye Cap',
-    chartDesc: 'Heavily marbled, char-forward, very rich',
-    richness: 'Very Rich',
-    seasoning: 'Cracked Pepper',
-    method: 'Direct Flame',
-  },
-  {
-    name: 'Costela',
-    sub: 'Beef Ribs',
-    copy: "Costela spends hours over the fire until it's falling off the bone. Slow-cooked, smoky, and worth the wait every time.",
-    chartTitle: 'Beef Ribs',
-    chartDesc: 'Slow-cooked for hours until fall-off-the-bone tender',
-    richness: 'Rich',
-    seasoning: 'Rock Salt',
-    method: 'Slow Fire',
-  },
-];
+};
 
 const cutsPanel = document.getElementById('cutsPanel');
 const cutsCloseBtn = document.getElementById('cutsCloseBtn');
@@ -209,14 +231,21 @@ const cutsTabs = document.getElementById('cutsTabs');
 const cutsCarousel = document.getElementById('cutsCarousel');
 const cutsSoon = document.getElementById('cutsSoon');
 const cutsDots = document.getElementById('cutsDots');
+const cutsHeroImg = document.getElementById('cutsHeroImg');
+const cutsChartImg = document.getElementById('cutsChartImg');
 const cutsPrefBtn = document.getElementById('cutsPrefBtn');
 const cutsRequestBtn = document.getElementById('cutsRequestBtn');
 
+let currentCategory = 'beef';
 let cutsIndex = 0;
 const savedCuts = new Set();
 
 function renderCuts() {
-  const cut = BEEF_CUTS[cutsIndex];
+  const category = CUTS_DATA[currentCategory];
+  const cut = category.cuts[cutsIndex];
+
+  cutsHeroImg.src = category.hero;
+  cutsChartImg.src = category.chart;
   document.getElementById('cutsName').textContent = cut.name;
   document.getElementById('cutsSub').textContent = cut.sub;
   document.getElementById('cutsCopy').textContent = cut.copy;
@@ -226,7 +255,7 @@ function renderCuts() {
   document.getElementById('cutsSeasoning').textContent = cut.seasoning;
   document.getElementById('cutsMethod').textContent = cut.method;
 
-  cutsDots.innerHTML = BEEF_CUTS.map((_, i) =>
+  cutsDots.innerHTML = category.cuts.map((_, i) =>
     `<button type="button" class="cuts-dot${i === cutsIndex ? ' active' : ''}" data-i="${i}" aria-label="Cut ${i + 1}"></button>`
   ).join('');
   cutsDots.querySelectorAll('.cuts-dot').forEach((dot) => {
@@ -238,12 +267,22 @@ function renderCuts() {
   cutsRequestBtn.textContent = 'Request Cut';
 }
 
+function showCategory(cat) {
+  currentCategory = cat;
+  cutsTabs.querySelectorAll('.cuts-tab').forEach((t) => t.classList.toggle('active', t.dataset.cat === cat));
+  if (CUTS_DATA[cat]) {
+    cutsIndex = 0;
+    renderCuts();
+    cutsCarousel.style.display = 'block';
+    cutsSoon.classList.remove('active');
+  } else {
+    cutsCarousel.style.display = 'none';
+    cutsSoon.classList.add('active');
+  }
+}
+
 function openCutsPanel() {
-  cutsIndex = 0;
-  renderCuts();
-  cutsCarousel.style.display = 'block';
-  cutsSoon.classList.remove('active');
-  cutsTabs.querySelectorAll('.cuts-tab').forEach((t) => t.classList.toggle('active', t.dataset.cat === 'beef'));
+  showCategory('beef');
   cutsPanel.classList.add('active');
 }
 
@@ -255,25 +294,13 @@ if (cutsCloseBtn) cutsCloseBtn.addEventListener('click', closeCutsPanel);
 
 if (cutsTabs) {
   cutsTabs.querySelectorAll('.cuts-tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      cutsTabs.querySelectorAll('.cuts-tab').forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
-      if (tab.dataset.cat === 'beef') {
-        cutsCarousel.style.display = 'block';
-        cutsSoon.classList.remove('active');
-        cutsIndex = 0;
-        renderCuts();
-      } else {
-        cutsCarousel.style.display = 'none';
-        cutsSoon.classList.add('active');
-      }
-    });
+    tab.addEventListener('click', () => showCategory(tab.dataset.cat));
   });
 }
 
 if (cutsPrefBtn) {
   cutsPrefBtn.addEventListener('click', () => {
-    const cut = BEEF_CUTS[cutsIndex];
+    const cut = CUTS_DATA[currentCategory].cuts[cutsIndex];
     if (savedCuts.has(cut.name)) savedCuts.delete(cut.name);
     else savedCuts.add(cut.name);
     renderCuts();
@@ -282,7 +309,7 @@ if (cutsPrefBtn) {
 
 if (cutsRequestBtn) {
   cutsRequestBtn.addEventListener('click', () => {
-    const cutName = BEEF_CUTS[cutsIndex].name;
+    const cutName = CUTS_DATA[currentCategory].cuts[cutsIndex].name;
     closeCutsPanel();
     addGauchoMessage(`Got it — I've let your server know you'd like the ${cutName} next.`, 'ai');
   });

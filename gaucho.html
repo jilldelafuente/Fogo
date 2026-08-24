@@ -9,19 +9,31 @@
 </head>
 <body class="gaucho-body">
 
+<div class="iphone-frame">
+  <div class="iphone-island"></div>
+  <div class="iphone-screen">
+
 <div class="gaucho-app">
 
-  <!-- WELCOME SCREEN -->
+  <!-- HOME SCREEN -->
   <section class="gaucho-welcome" id="gauchoWelcome">
-    <div class="gaucho-welcome-glow"></div>
+    <header class="home-topbar">
+      <button type="button" class="home-menu-btn" aria-label="Menu"><span></span><span></span></button>
+      <img src="images/gaucho/home-logo.png" alt="Fogo de Chão" class="home-logo">
+      <span class="home-ai-mark"><img src="images/gaucho/diamond-mark.png" alt=""></span>
+    </header>
+    <div class="home-topbar-divider"></div>
 
-    <div class="gaucho-welcome-content">
-      <img src="Icons/flame.png" alt="" class="gaucho-flame">
-      <span class="gaucho-eyebrow">Scanned from your table</span>
-      <h1 class="gaucho-welcome-title">Meet<br>Gaúcho.</h1>
-      <p class="gaucho-welcome-sub">Your table&rsquo;s personal meal assistant tonight. Ask about the menu, get a pairing, or just say hi.</p>
-      <button type="button" class="btn btn-clay gaucho-start-btn" id="gauchoStartBtn">Start Chatting</button>
-      <span class="gaucho-welcome-note">Table 14 &middot; Fogo de Ch&atilde;o</span>
+    <div class="home-content">
+      <p class="home-welcome-line"><strong>Welcome</strong> Chris &amp; Family</p>
+      <img src="images/gaucho/diamond-mark.png" alt="" class="home-flame">
+      <h1 class="home-title">Meet<br>Gaúcho.</h1>
+      <p class="home-sub">Your table&rsquo;s personal meal assistant tonight.<br>Ask about the menu, get a pairing, or just say hi.</p>
+      <button type="button" class="home-start-btn" id="gauchoStartBtn">Start Chatting</button>
+      <div class="home-secondary-group">
+        <button type="button" class="home-secondary-btn">Tonight&rsquo;s Menu</button>
+        <button type="button" class="home-secondary-btn">Pay Bill</button>
+      </div>
     </div>
   </section>
 
@@ -29,60 +41,51 @@
   <section class="gaucho-chat" id="gauchoChat">
     <header class="gaucho-chat-header">
       <div class="gaucho-chat-identity">
-        <span class="gaucho-avatar"><img src="Icons/flame.png" alt=""></span>
-        <div>
-          <span class="gaucho-chat-name">Gaúcho</span>
-          <span class="gaucho-chat-status"><i></i>At your table</span>
-        </div>
+        <span class="gaucho-avatar"><img src="images/gaucho/diamond-mark.png" alt=""></span>
+        <span class="gaucho-chat-name">Guacho</span>
       </div>
-      <button type="button" class="gaucho-end-btn" id="gauchoEndBtn" aria-label="End chat">&times;</button>
+      <button type="button" class="icon-x gaucho-end-btn" id="gauchoEndBtn" aria-label="End chat"><span></span><span></span></button>
     </header>
 
     <div class="gaucho-messages" id="gauchoMessages"></div>
 
     <div class="gaucho-quick-replies" id="gauchoQuickReplies">
-      <button type="button" class="gaucho-chip" data-action="cuts">See the Cuts</button>
-      <button type="button" class="gaucho-chip" data-q="What is churrasco?">What is churrasco?</button>
-      <button type="button" class="gaucho-chip" data-q="Recommend a wine">Recommend a wine</button>
+      <button type="button" class="gaucho-chip" data-action="cuts">See tonight&rsquo;s cuts</button>
+      <button type="button" class="gaucho-chip" data-q="What is churrasco?">What is Churrasco</button>
+      <button type="button" class="gaucho-chip" data-q="I need a wine recommendation">I need a wine recommendation</button>
       <button type="button" class="gaucho-chip" data-q="I have a dietary restriction">Dietary restriction</button>
       <button type="button" class="gaucho-chip" data-q="What's the $59 special?">The $59 special?</button>
       <button type="button" class="gaucho-chip" data-q="Call my server">Call my server</button>
     </div>
 
     <form class="gaucho-input-row" id="gauchoForm">
-      <input type="text" id="gauchoInput" placeholder="Ask Ga&uacute;cho anything&hellip;" autocomplete="off">
-      <button type="submit" class="gaucho-send-btn" aria-label="Send">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15.5M13 5.5 19.5 12 13 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <input type="text" id="gauchoInput" placeholder="What can I help you with?" autocomplete="off">
+      <button type="submit" class="gaucho-mic-btn" aria-label="Send">
+        <img src="images/gaucho/mic-icon.svg" alt="">
       </button>
     </form>
   </section>
 
   <!-- CUTS EDUCATION PANEL -->
   <section class="cuts-panel" id="cutsPanel">
-    <header class="cuts-topbar">
-      <span class="cuts-menu-icon"><span></span><span></span></span>
-      <img src="images/statics/fogologo2.png" alt="Fogo de Chão" class="cuts-logo">
-      <button type="button" class="cuts-ai-btn" id="cutsCloseBtn" aria-label="Back to Gaúcho">
-        <img src="Icons/aistars.svg" alt="">
-      </button>
-    </header>
+    <div class="cuts-topbar">
+      <button type="button" class="icon-x cuts-close-btn" id="cutsCloseBtn" aria-label="Close"><span></span><span></span></button>
+    </div>
 
     <nav class="cuts-tabs" id="cutsTabs">
-      <div class="cuts-tabs-inner">
-        <span class="cuts-tabs-eyebrow">Tonight&rsquo;s Cuts:</span>
-        <div class="cuts-tabs-row">
-          <button type="button" class="cuts-tab active" data-cat="beef">Beef</button>
-          <button type="button" class="cuts-tab" data-cat="chicken">Chicken</button>
-          <button type="button" class="cuts-tab" data-cat="lamb">Lamb</button>
-          <button type="button" class="cuts-tab" data-cat="pork">Pork</button>
-          <button type="button" class="cuts-tab" data-cat="seafood">Seafood</button>
-        </div>
+      <span class="cuts-tabs-eyebrow">Tonight&rsquo;s Cuts:</span>
+      <div class="cuts-tabs-row">
+        <button type="button" class="cuts-tab active" data-cat="beef">Beef</button>
+        <button type="button" class="cuts-tab" data-cat="chicken">Chicken</button>
+        <button type="button" class="cuts-tab" data-cat="lamb">Lamb</button>
+        <button type="button" class="cuts-tab" data-cat="pork">Pork</button>
+        <button type="button" class="cuts-tab" data-cat="seafood">Seafood</button>
       </div>
     </nav>
 
     <div class="cuts-carousel" id="cutsCarousel">
       <div class="cuts-hero">
-        <img src="images/statics/meatskewer.png" alt="" class="cuts-hero-img" id="cutsHeroImg">
+        <img src="" alt="" class="cuts-hero-img" id="cutsHeroImg">
       </div>
 
       <div class="cuts-description">
@@ -93,12 +96,7 @@
 
       <div class="cuts-chart">
         <div class="cuts-chart-top">
-          <span class="cuts-chart-diagram">
-            <svg viewBox="0 0 104 66" fill="none" aria-hidden="true">
-              <path d="M8 40c0-9 6-16 16-18 4-8 12-13 22-13 8 0 15 4 19 10 9 1 16 6 20 13 6 2 11 7 11 13 0 8-8 13-18 13H24c-9 0-16-8-16-18Z" stroke="#211F20" stroke-width="1.4"/>
-              <path d="M24 22v20M46 12v34M68 20v26M85 32v14" stroke="#211F20" stroke-width="1" opacity="0.55"/>
-            </svg>
-          </span>
+          <span class="cuts-chart-diagram"><img src="images/gaucho/beef-chart.png" alt="" id="cutsChartImg"></span>
           <div>
             <span class="cuts-chart-title" id="cutsChartTitle">Top Sirloin</span>
             <p class="cuts-chart-desc" id="cutsChartDesc">It offers a bold, beefy flavor and a firm texture</p>
@@ -129,10 +127,13 @@
     </div>
 
     <div class="cuts-soon" id="cutsSoon">
-      <p>More categories are coming soon &mdash; ask Ga&uacute;cho about tonight&rsquo;s chicken, lamb, pork, or seafood in the meantime.</p>
+      <p>More categories are coming soon &mdash; ask Ga&uacute;cho about tonight&rsquo;s lamb, pork, or seafood in the meantime.</p>
     </div>
   </section>
 
+</div>
+
+  </div>
 </div>
 
 <script src="gaucho.js"></script>
