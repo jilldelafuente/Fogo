@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Fogo Rewards — Fogo de Chão</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="rewards.css">
+</head>
+<body class="rewards-body">
+
+<header class="site-header" id="siteHeader">
+  <div class="nav" id="nav">
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu">
+      <span class="menu-lines"><span></span><span></span></span>
+      <span class="menu-label">Menu</span>
+    </button>
+
+    <a href="index.html" class="nav-brand">
+      <img src="images/statics/fogologo.png" alt="Fogo de Chão" class="nav-logo">
+    </a>
+
+    <div class="nav-actions">
+      <a href="#" class="btn btn-clay nav-reservations">Reservations</a>
+      <button type="button" class="nav-ai-btn" aria-label="AI Concierge">
+        <img src="Icons/aistars.svg" alt="" class="nav-ai-icon">
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mega-nav" id="megaNav">
+  <div class="mega-nav-body">
+    <nav class="mega-nav-links">
+      <a href="index.html#">Our Menu</a>
+      <a href="index.html#">Locations</a>
+      <a href="index.html#">Our Story</a>
+      <a href="index.html#">Group Dining</a>
+      <a href="index.html#">Order-to-Go</a>
+      <a href="index.html#">Catering</a>
+    </nav>
+
+    <div class="mega-nav-promo">
+      <img src="images/statics/navimage.png" alt="" class="mega-nav-promo-img">
+      <img src="images/statics/fogorewardswhite.png" alt="Fogo Rewards" class="mega-nav-promo-logo">
+      <h3 class="mega-nav-promo-title">Your next meal<br>could be half off.</h3>
+      <a href="fogo-rewards.html" class="btn btn-clay mega-nav-promo-cta">Learn More</a>
+    </div>
+  </div>
+
+  <hr class="mega-nav-divider">
+
+  <div class="mega-nav-social">
+    <a href="#" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.25-1.5 1.6-1.5H16.5V4.3c-.28-.04-1.24-.12-2.36-.12-2.34 0-3.94 1.43-3.94 4.04V10.5H7.5v3H10.2V21h3.3Z"/></svg>
+    </a>
+    <a href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/>
+        <circle cx="12" cy="12" r="4.2"/>
+        <circle cx="17.1" cy="6.9" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="#" aria-label="X">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4l7.2 8.6L4.4 20h2.4l5.7-6.2L17.3 20H20l-7.5-8.9L19.9 4h-2.4l-5.3 5.7L7.7 4H4Z"/></svg>
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M10.3 9.6v4.8l4.4-2.4-4.4-2.4Z"/>
+      </svg>
+    </a>
+    <a href="#" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 3h2.4c.2 1.9 1.5 3.3 3.6 3.5v2.5c-1.3 0-2.6-.4-3.6-1.1v6.4a5 5 0 1 1-4-4.9v2.6a2.4 2.4 0 1 0 1.6 2.3V3Z"/></svg>
+    </a>
+  </div>
+</div>
+
+<div class="loyalty">
+
+  <!-- LEFT PANEL -->
+  <div class="loyalty-side">
+    <img src="images/statics/fire bg-full.png" alt="" class="loyalty-side-bg">
+
+    <div class="loyalty-side-content">
+      <img src="images/statics/fogorewardswhite.png" alt="Fogo Rewards" class="loyalty-logo">
+
+      <div class="loyalty-tabs" id="loyaltyTabs">
+        <span class="loyalty-tab" data-tab="1">Profile</span>
+        <span class="loyalty-tab" data-tab="2">How You Gather</span>
+        <span class="loyalty-tab" data-tab="3">Occasions</span>
+        <span class="loyalty-tab" data-tab="4">Preferences</span>
+      </div>
+
+      <h1 class="loyalty-side-head" id="loyaltySideHead">Let&rsquo;s start with the basics.</h1>
+      <p class="loyalty-side-sub" id="loyaltySideSub">This just gets your account set up.</p>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="loyalty-form">
+
+    <!-- STEP 1: basic info -->
+    <form class="loyalty-step" data-step="1">
+      <span class="loyalty-eyebrow">Create Your Account</span>
+      <h2 class="loyalty-title">Add Your Info</h2>
+      <p class="loyalty-note">Required for every Fogo Rewards member.</p>
+
+      <div class="loyalty-field">
+        <label for="rwFirstName">First name*</label>
+        <input id="rwFirstName" required placeholder="First name">
+      </div>
+      <div class="loyalty-field">
+        <label for="rwLastName">Last name*</label>
+        <input id="rwLastName" required placeholder="Last name">
+      </div>
+      <div class="loyalty-field">
+        <label for="rwEmail">Email*</label>
+        <input id="rwEmail" required type="email" placeholder="name@email.com">
+      </div>
+      <div class="loyalty-row">
+        <div class="loyalty-field loyalty-field-half">
+          <label for="rwPhone">Phone number*</label>
+          <input id="rwPhone" required placeholder="+1 111 111 1111">
+        </div>
+        <div class="loyalty-field loyalty-field-half">
+          <label for="rwZip">ZIP code*</label>
+          <input id="rwZip" required placeholder="XXXXX">
+        </div>
+      </div>
+      <div class="loyalty-row">
+        <div class="loyalty-field loyalty-field-half">
+          <label for="rwBirthday">Birthday*</label>
+          <input id="rwBirthday" required placeholder="MM/DD/YYYY">
+        </div>
+        <div class="loyalty-field loyalty-field-half">
+          <label for="rwLocation">Preferred location*</label>
+          <select id="rwLocation">
+            <option>Choose Fogo restaurant</option>
+            <option>Austin</option>
+            <option>Chicago</option>
+            <option>Dallas</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="loyalty-nav-row loyalty-nav-row-single">
+        <button type="button" class="btn btn-clay" onclick="rewardsGo(2)">Next</button>
+      </div>
+    </form>
+
+    <!-- STEP 2: who's at the table + occasion type -->
+    <form class="loyalty-step" data-step="2" style="display:none">
+      <span class="loyalty-eyebrow">Tell Us How You Gather</span>
+      <h2 class="loyalty-title">Who&rsquo;s Usually at Your Table?</h2>
+      <p class="loyalty-note">This helps us recommend the right size table and the right offers.</p>
+      <div class="loyalty-choices" id="rwQ1"></div>
+
+      <h2 class="loyalty-title loyalty-title-tight">What Usually Gets You In?</h2>
+      <p class="loyalty-note">Any restaurant, not just Fogo. Pick the one that fits best.</p>
+      <div class="loyalty-choices loyalty-choices-stacked" id="rwQ2"></div>
+
+      <div class="loyalty-nav-row">
+        <button type="button" class="btn btn-outline-clay" onclick="rewardsGo(1)">&larr; Back</button>
+        <button type="button" class="btn btn-clay" onclick="rewardsGo(3)">Next</button>
+      </div>
+    </form>
+
+    <!-- STEP 3: dates that matter -->
+    <form class="loyalty-step" data-step="3" style="display:none">
+      <span class="loyalty-eyebrow">Never Miss an Occasion</span>
+      <h2 class="loyalty-title">Any Dates Worth Knowing?</h2>
+      <p class="loyalty-note">Add an anniversary, a birthday, anything worth celebrating. Optional, but this is how we send the right offer at the right time.</p>
+
+      <div id="rwDateRows"></div>
+      <button type="button" class="loyalty-add-date" id="rwAddDate">+ Add Another Date</button>
+
+      <div class="loyalty-nav-row">
+        <button type="button" class="btn btn-outline-clay" onclick="rewardsGo(2)">&larr; Back</button>
+        <div class="loyalty-nav-actions">
+          <button type="button" class="loyalty-skip" onclick="rewardsGo(4)">Skip for now</button>
+          <button type="button" class="btn btn-clay" onclick="rewardsGo(4)">Next</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- STEP 4: priorities + consent -->
+    <form class="loyalty-step" data-step="4" style="display:none">
+      <span class="loyalty-eyebrow">Almost There</span>
+      <h2 class="loyalty-title">What Matters Most When You Pick a Place to Eat?</h2>
+      <p class="loyalty-note">Tap your top two, in order.</p>
+      <div class="loyalty-choices loyalty-choices-stacked" id="rwQ3"></div>
+
+      <div class="loyalty-field">
+        <label for="rwDietary">Any dietary considerations or allergies we should know about?</label>
+        <textarea id="rwDietary" placeholder="e.g. shellfish allergy, vegetarian, gluten-free"></textarea>
+      </div>
+
+      <div class="loyalty-consent">
+        <input type="checkbox" id="rwOptin">
+        <label for="rwOptin">By opting in for Fogo Rewards, you agree to receive promotional emails and other materials from Fogo de Chão and its affiliates. Reward <a href="#">Terms &amp; Conditions</a> apply.*</label>
+      </div>
+
+      <div class="loyalty-nav-row">
+        <button type="button" class="btn btn-outline-clay" onclick="rewardsGo(3)">&larr; Back</button>
+        <button type="button" class="btn btn-clay" id="rwFinishBtn" disabled onclick="rewardsGo(5)">Join Fogo Rewards</button>
+      </div>
+    </form>
+
+    <!-- STEP 5: confirmation -->
+    <div class="loyalty-step loyalty-confirm" data-step="5" style="display:none">
+      <span class="loyalty-mark">Fogo Rewards</span>
+      <h2 class="loyalty-confirm-title">You&rsquo;re In.</h2>
+      <p class="loyalty-note">Your charcuterie plate is waiting on your next visit. Here&rsquo;s what we&rsquo;ve got so far:</p>
+      <div class="loyalty-summary" id="rwSummary"></div>
+      <a href="index.html" class="btn btn-clay">Back to Fogo de Ch&atilde;o</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="rewards.js"></script>
+</body>
+</html>

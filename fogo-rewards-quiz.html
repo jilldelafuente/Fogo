@@ -1,0 +1,321 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fogo Rewards — Sign Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --coal:#17120F; --smoke:#221B16; --smoke-2:#2A2119;
+  --ember:#E2542B; --gold:#E0A93B;
+  --bone:#F4EFE5; --dim:rgba(244,239,229,.55); --faint:rgba(244,239,229,.18);
+  --cream:#F7F3EA; --ink:#231C17; --ink-dim:#7A7166; --line:#E4DCCB;
+  --display:'Fraunces',Georgia,serif; --ui:'Archivo','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ui);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* ── shell: dark brand panel + cream form panel, matches real Fogo page ── */
+.shell{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+@media (max-width:960px){.shell{grid-template-columns:1fr}.side{min-height:220px}}
+
+.side{
+  background:var(--coal);color:var(--bone);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  padding:60px 40px;
+}
+.side::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(226,84,43,.14),transparent 40%),
+    radial-gradient(circle at 80% 75%,rgba(224,169,59,.10),transparent 45%);
+}
+.brand{font-family:var(--display);font-size:15px;letter-spacing:.22em;position:relative;z-index:1}
+.brand em{font-style:normal;color:var(--ember)}
+.side-progress{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ember);margin:34px 0 16px;position:relative;z-index:1}
+.side-head{font-family:var(--display);font-weight:300;font-size:clamp(30px,3.6vw,46px);line-height:1.08;position:relative;z-index:1;max-width:420px}
+.side-sub{color:var(--dim);font-size:14.5px;margin-top:18px;max-width:360px;line-height:1.6;position:relative;z-index:1}
+
+/* progress dots */
+.dots{display:flex;gap:8px;margin-top:30px;position:relative;z-index:1}
+.dot{width:26px;height:2px;background:var(--faint);border-radius:2px;transition:background .3s}
+.dot.done{background:var(--gold)}
+.dot.now{background:var(--ember)}
+
+/* ── form panel ── */
+.form-panel{padding:60px 64px;display:flex;flex-direction:column;justify-content:center}
+@media (max-width:640px){.form-panel{padding:38px 24px}}
+.step{max-width:480px;width:100%;margin:0 auto}
+.step-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ember);margin-bottom:10px}
+.step-title{font-family:var(--display);font-weight:400;font-size:28px;margin-bottom:8px}
+.step-note{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:30px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:12.5px;color:var(--ink-dim);margin-bottom:7px}
+.field input,.field select{
+  width:100%;border:1px solid var(--line);background:#fff;border-radius:2px;
+  padding:13px 14px;font-family:var(--ui);font-size:14.5px;color:var(--ink);outline:0;
+  transition:border-color .18s;
+}
+.field input:focus,.field select:focus{border-color:var(--ember)}
+.hint{font-size:11.5px;color:var(--ink-dim);margin-top:6px}
+
+/* choice buttons for quiz steps */
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.choice{
+  font-family:var(--ui);font-size:13.5px;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:100px;
+  padding:11px 20px;cursor:pointer;transition:.18s;
+}
+.choice:hover{border-color:var(--ember)}
+.choice.on{background:var(--ember);border-color:var(--ember);color:var(--bone);font-weight:600}
+.choices.stacked{flex-direction:column}
+.choices.stacked .choice{border-radius:4px;text-align:left}
+
+.rank-hint{font-size:12px;color:var(--ink-dim);margin-bottom:14px}
+.rank-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;background:var(--gold);color:var(--coal);
+  font-size:10.5px;font-weight:700;margin-right:9px;
+}
+
+.dates-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;align-items:end}
+.dates-row .field{margin-bottom:0}
+.add-date{background:none;border:1px dashed var(--line);color:var(--ink-dim);font-size:13px;
+  padding:10px 16px;border-radius:4px;cursor:pointer;width:100%;text-align:left;transition:.18s}
+.add-date:hover{border-color:var(--ember);color:var(--ink)}
+
+.consent{display:flex;gap:11px;align-items:flex-start;margin:22px 0 4px;font-size:12px;color:var(--ink-dim);line-height:1.55}
+.consent input{margin-top:3px;flex-shrink:0}
+.consent a{color:var(--ink);text-decoration:underline}
+
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:30px}
+.btn{font-family:var(--ui);font-size:13.5px;font-weight:600;letter-spacing:.04em;border-radius:2px;
+  padding:14px 32px;cursor:pointer;border:0;transition:.18s}
+.btn.primary{background:var(--ember);color:var(--bone)}
+.btn.primary:hover{background:#F0663C}
+.btn.primary:disabled{background:#D8CDBB;cursor:not-allowed}
+.btn.back{background:none;color:var(--ink-dim);padding:14px 6px}
+.btn.back:hover{color:var(--ink)}
+.skip{font-size:12.5px;color:var(--ink-dim);text-decoration:underline;cursor:pointer;background:none;border:0}
+
+/* confirmation */
+.confirm{text-align:center}
+.confirm .mark{font-family:var(--display);font-size:13px;letter-spacing:.2em;color:var(--ember);margin-bottom:18px}
+.confirm h2{font-family:var(--display);font-weight:300;font-size:34px;margin-bottom:14px}
+.summary{
+  text-align:left;background:#fff;border:1px solid var(--line);border-radius:4px;
+  padding:22px 24px;margin:26px 0;font-size:13.5px;line-height:1.9;color:var(--ink-dim);
+}
+.summary b{color:var(--ink);font-weight:600}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+
+<div class="shell">
+  <div class="side">
+    <div class="brand">FOGO <em>DE</em> CHÃO</div>
+    <div class="side-progress" id="sideProgress">STEP 1 OF 4</div>
+    <div class="side-head" id="sideHead">Let's start with the basics.</div>
+    <div class="side-sub" id="sideSub">This gets your account set up. Two quick questions after, and you're in.</div>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="form-panel">
+
+    <!-- STEP 1: basic account info (unchanged from real form) -->
+    <form class="step" data-step="1">
+      <div class="step-eyebrow">Create your account</div>
+      <div class="step-title">Add your info</div>
+      <div class="step-note">Required for every Fogo Rewards member.</div>
+
+      <div class="grid2">
+        <div class="field"><label>First name*</label><input required placeholder="First name"></div>
+        <div class="field"><label>Last name*</label><input required placeholder="Last name"></div>
+      </div>
+      <div class="field"><label>Email*</label><input required type="email" placeholder="name@email.com"></div>
+      <div class="grid2">
+        <div class="field"><label>Phone number*</label><input required placeholder="+1 111 111 1111"></div>
+        <div class="field"><label>ZIP code*</label><input required placeholder="XXXXX"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>Birthday*</label><input required placeholder="MM/DD/YYYY"></div>
+        <div class="field"><label>Preferred location*</label>
+          <select><option>Choose Fogo restaurant</option><option>Austin</option><option>Chicago</option><option>Dallas</option></select>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <span></span>
+        <button type="button" class="btn primary" onclick="go(2)">Continue</button>
+      </div>
+    </form>
+
+    <!-- STEP 2: who's at the table + occasion type -->
+    <form class="step" data-step="2" style="display:none">
+      <div class="step-eyebrow">Tell us how you gather</div>
+      <div class="step-title">Who's usually at your table?</div>
+      <div class="step-note">This helps us recommend the right size table and the right offers. Pick one.</div>
+
+      <div class="choices" id="q1"></div>
+
+      <div class="step-title" style="margin-top:34px">What usually gets you into a restaurant?</div>
+      <div class="step-note">Any restaurant — not just Fogo. Pick the one that fits best.</div>
+      <div class="choices stacked" id="q2"></div>
+
+      <div class="nav-row">
+        <button type="button" class="btn back" onclick="go(1)">← Back</button>
+        <button type="button" class="btn primary" onclick="go(3)">Continue</button>
+      </div>
+    </form>
+
+    <!-- STEP 3: dates that matter -->
+    <form class="step" data-step="3" style="display:none">
+      <div class="step-eyebrow">Never miss an occasion</div>
+      <div class="step-title">Any dates worth knowing?</div>
+      <div class="step-note">Add an anniversary, a kid's birthday, anything worth celebrating. Optional, but this is how we send the right offer at the right time.</div>
+
+      <div id="dateRows"></div>
+      <button type="button" class="add-date" onclick="addDateRow()">+ Add another date</button>
+
+      <div class="nav-row">
+        <button type="button" class="btn back" onclick="go(2)">← Back</button>
+        <div style="display:flex;gap:18px;align-items:center">
+          <button type="button" class="skip" onclick="go(4)">Skip for now</button>
+          <button type="button" class="btn primary" onclick="go(4)">Continue</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- STEP 4: priorities ranking -->
+    <form class="step" data-step="4" style="display:none">
+      <div class="step-eyebrow">Almost there</div>
+      <div class="step-title">What matters most when you pick a place to eat?</div>
+      <div class="rank-hint">Tap your top two, in order.</div>
+      <div class="choices stacked" id="q3"></div>
+
+      <div class="consent">
+        <input type="checkbox" id="optin">
+        <label for="optin">By opting in for Fogo Rewards, you agree to receive promotional emails and other materials from Fogo de Chão and its affiliates. Reward <a href="#">Terms &amp; Conditions</a> apply.*</label>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn back" onclick="go(3)">← Back</button>
+        <button type="button" class="btn primary" id="finishBtn" disabled onclick="go(5)">Join Fogo Rewards</button>
+      </div>
+    </form>
+
+    <!-- STEP 5: confirmation -->
+    <div class="step confirm" data-step="5" style="display:none">
+      <div class="mark">FOGO REWARDS</div>
+      <h2>You're in.</h2>
+      <p style="color:var(--ink-dim);font-size:14.5px">Your charcuterie plate is waiting on your next visit. Here's what we've got so far:</p>
+      <div class="summary" id="summary"></div>
+      <button type="button" class="btn primary" onclick="location.reload()">Start over</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const SIDE = {
+  1:["STEP 1 OF 4","Let's start with the basics.","This gets your account set up. Two quick questions after, and you're in."],
+  2:["STEP 2 OF 4","Tell us how you gather.","We'll make sure Fogo fits, whether it's a table for two or a table for twelve."],
+  3:["STEP 3 OF 4","We'll remember the dates.","Anniversaries, birthdays, whatever's worth celebrating — tell us once."],
+  4:["STEP 4 OF 4","One last thing.","This is how we make sure what we send you actually feels relevant."],
+  5:["YOU'RE IN","Welcome to the table.","Every visit starts here now."]
+};
+
+function renderDots(step){
+  const d=document.getElementById('dots'); d.innerHTML='';
+  for(let i=1;i<=4;i++){
+    const el=document.createElement('div');
+    el.className='dot'+(i<step?' done':i===step?' now':'');
+    d.appendChild(el);
+  }
+}
+
+function go(step){
+  document.querySelectorAll('.step').forEach(s=>s.style.display='none');
+  document.querySelector(`[data-step="${step}"]`).style.display='block';
+  const [p,h,s]=SIDE[step];
+  document.getElementById('sideProgress').textContent=p;
+  document.getElementById('sideHead').textContent=h;
+  document.getElementById('sideSub').textContent=s;
+  renderDots(Math.min(step,4));
+  if(step===5) buildSummary();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* choice builders */
+function choiceGroup(containerId, options, multi, max){
+  const el=document.getElementById(containerId);
+  el.innerHTML=options.map(o=>`<button type="button" class="choice" data-v="${o}">${o}</button>`).join('');
+  el.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>{
+    if(multi){
+      const onNow=el.querySelectorAll('.choice.on').length;
+      if(!b.classList.contains('on') && onNow>=max) return;
+      b.classList.toggle('on');
+      if(b.classList.contains('on')){
+        const n=el.querySelectorAll('.choice.on').length;
+        b.querySelector('.rank-badge')?.remove();
+        b.insertAdjacentHTML('afterbegin',`<span class="rank-badge">${n}</span>`);
+      } else {
+        b.querySelector('.rank-badge')?.remove();
+        el.querySelectorAll('.choice.on').forEach((c,i)=>{
+          c.querySelector('.rank-badge')?.remove();
+          c.insertAdjacentHTML('afterbegin',`<span class="rank-badge">${i+1}</span>`);
+        });
+      }
+      checkFinish();
+    } else {
+      el.querySelectorAll('.choice').forEach(c=>c.classList.remove('on'));
+      b.classList.add('on');
+    }
+  }));
+}
+
+choiceGroup('q1',["Just me","Partner","Kids at home","Extended family","Friends, usually a group"],false);
+choiceGroup('q2',["A real occasion — birthday, anniversary, milestone","Work — clients or team","A regular thing we do","Whenever, no reason needed"],false);
+choiceGroup('q3',["Something for everyone at the table","Fast, easy, no fuss","Feels special","New things to try","Reliable, we know what we're getting"],true,2);
+
+document.getElementById('optin').addEventListener('change',checkFinish);
+function checkFinish(){
+  const opted=document.getElementById('optin').checked;
+  document.getElementById('finishBtn').disabled=!opted;
+}
+
+/* date rows */
+let dateCount=0;
+function addDateRow(){
+  dateCount++;
+  const wrap=document.createElement('div');
+  wrap.className='dates-row';
+  wrap.innerHTML=`
+    <div class="field"><label>What's the occasion?</label><input placeholder="e.g. Anniversary, Mia's birthday"></div>
+    <div class="field"><label>Date</label><input placeholder="MM/DD/YYYY"></div>`;
+  document.getElementById('dateRows').appendChild(wrap);
+}
+addDateRow();
+
+/* summary */
+function buildSummary(){
+  const who=document.querySelector('#q1 .choice.on')?.dataset.v || '—';
+  const occ=document.querySelector('#q2 .choice.on')?.dataset.v || '—';
+  const dates=[...document.querySelectorAll('.dates-row')].map(r=>{
+    const inputs=r.querySelectorAll('input');
+    return inputs[0].value ? `${inputs[0].value} — ${inputs[1].value||'no date set'}` : null;
+  }).filter(Boolean);
+  const pri=[...document.querySelectorAll('#q3 .choice.on')].map(b=>b.dataset.v);
+
+  document.getElementById('summary').innerHTML=`
+    <div><b>Usually dining with:</b> ${who}</div>
+    <div><b>What brings you in:</b> ${occ}</div>
+    <div><b>Dates on file:</b> ${dates.length?dates.join('; '):'None added'}</div>
+    <div><b>Top priorities:</b> ${pri.length?pri.join(' → '):'—'}</div>`;
+}
+
+renderDots(1);
+</script>

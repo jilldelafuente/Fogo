@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gaúcho — Your Table's AI Meal Assistant</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="gaucho.css">
+</head>
+<body class="gaucho-body">
+
+<div class="gaucho-app">
+
+  <!-- WELCOME SCREEN -->
+  <section class="gaucho-welcome" id="gauchoWelcome">
+    <div class="gaucho-welcome-glow"></div>
+
+    <div class="gaucho-welcome-content">
+      <img src="Icons/flame.png" alt="" class="gaucho-flame">
+      <span class="gaucho-eyebrow">Scanned from your table</span>
+      <h1 class="gaucho-welcome-title">Meet<br>Gaúcho.</h1>
+      <p class="gaucho-welcome-sub">Your table&rsquo;s personal meal assistant tonight. Ask about the menu, get a pairing, or just say hi.</p>
+      <button type="button" class="btn btn-clay gaucho-start-btn" id="gauchoStartBtn">Start Chatting</button>
+      <span class="gaucho-welcome-note">Table 14 &middot; Fogo de Ch&atilde;o</span>
+    </div>
+  </section>
+
+  <!-- CHAT SCREEN -->
+  <section class="gaucho-chat" id="gauchoChat">
+    <header class="gaucho-chat-header">
+      <div class="gaucho-chat-identity">
+        <span class="gaucho-avatar"><img src="Icons/flame.png" alt=""></span>
+        <div>
+          <span class="gaucho-chat-name">Gaúcho</span>
+          <span class="gaucho-chat-status"><i></i>At your table</span>
+        </div>
+      </div>
+      <button type="button" class="gaucho-end-btn" id="gauchoEndBtn" aria-label="End chat">&times;</button>
+    </header>
+
+    <div class="gaucho-messages" id="gauchoMessages"></div>
+
+    <div class="gaucho-quick-replies" id="gauchoQuickReplies">
+      <button type="button" class="gaucho-chip" data-action="cuts">See the Cuts</button>
+      <button type="button" class="gaucho-chip" data-q="What is churrasco?">What is churrasco?</button>
+      <button type="button" class="gaucho-chip" data-q="Recommend a wine">Recommend a wine</button>
+      <button type="button" class="gaucho-chip" data-q="I have a dietary restriction">Dietary restriction</button>
+      <button type="button" class="gaucho-chip" data-q="What's the $59 special?">The $59 special?</button>
+      <button type="button" class="gaucho-chip" data-q="Call my server">Call my server</button>
+    </div>
+
+    <form class="gaucho-input-row" id="gauchoForm">
+      <input type="text" id="gauchoInput" placeholder="Ask Ga&uacute;cho anything&hellip;" autocomplete="off">
+      <button type="submit" class="gaucho-send-btn" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15.5M13 5.5 19.5 12 13 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+  </section>
+
+  <!-- CUTS EDUCATION PANEL -->
+  <section class="cuts-panel" id="cutsPanel">
+    <header class="cuts-topbar">
+      <span class="cuts-menu-icon"><span></span><span></span></span>
+      <img src="images/statics/fogologo2.png" alt="Fogo de Chão" class="cuts-logo">
+      <button type="button" class="cuts-ai-btn" id="cutsCloseBtn" aria-label="Back to Gaúcho">
+        <img src="Icons/aistars.svg" alt="">
+      </button>
+    </header>
+
+    <nav class="cuts-tabs" id="cutsTabs">
+      <div class="cuts-tabs-inner">
+        <span class="cuts-tabs-eyebrow">Tonight&rsquo;s Cuts:</span>
+        <div class="cuts-tabs-row">
+          <button type="button" class="cuts-tab active" data-cat="beef">Beef</button>
+          <button type="button" class="cuts-tab" data-cat="chicken">Chicken</button>
+          <button type="button" class="cuts-tab" data-cat="lamb">Lamb</button>
+          <button type="button" class="cuts-tab" data-cat="pork">Pork</button>
+          <button type="button" class="cuts-tab" data-cat="seafood">Seafood</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="cuts-carousel" id="cutsCarousel">
+      <div class="cuts-hero">
+        <img src="images/statics/meatskewer.png" alt="" class="cuts-hero-img" id="cutsHeroImg">
+      </div>
+
+      <div class="cuts-description">
+        <h2 class="cuts-name" id="cutsName">Picanha</h2>
+        <span class="cuts-sub" id="cutsSub">Top Sirloin Cap</span>
+        <p class="cuts-copy" id="cutsCopy">Picanha is the cut churrasco is built around. Lightly seasoned and sliced in front of you, it&rsquo;s tender with just enough marbling to stay juicy without being heavy.</p>
+      </div>
+
+      <div class="cuts-chart">
+        <div class="cuts-chart-top">
+          <span class="cuts-chart-diagram">
+            <svg viewBox="0 0 104 66" fill="none" aria-hidden="true">
+              <path d="M8 40c0-9 6-16 16-18 4-8 12-13 22-13 8 0 15 4 19 10 9 1 16 6 20 13 6 2 11 7 11 13 0 8-8 13-18 13H24c-9 0-16-8-16-18Z" stroke="#211F20" stroke-width="1.4"/>
+              <path d="M24 22v20M46 12v34M68 20v26M85 32v14" stroke="#211F20" stroke-width="1" opacity="0.55"/>
+            </svg>
+          </span>
+          <div>
+            <span class="cuts-chart-title" id="cutsChartTitle">Top Sirloin</span>
+            <p class="cuts-chart-desc" id="cutsChartDesc">It offers a bold, beefy flavor and a firm texture</p>
+          </div>
+        </div>
+        <div class="cuts-chart-stats">
+          <div class="cuts-stat">
+            <span class="cuts-stat-label">Richness</span>
+            <span class="cuts-stat-value" id="cutsRichness">Moderate</span>
+          </div>
+          <div class="cuts-stat">
+            <span class="cuts-stat-label">Seasoning</span>
+            <span class="cuts-stat-value" id="cutsSeasoning">Rock Salt</span>
+          </div>
+          <div class="cuts-stat">
+            <span class="cuts-stat-label">Method</span>
+            <span class="cuts-stat-value" id="cutsMethod">Skewer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuts-actions">
+        <button type="button" class="cuts-btn-pref" id="cutsPrefBtn">Add to Preferences</button>
+        <button type="button" class="cuts-btn-request" id="cutsRequestBtn">Request Cut</button>
+      </div>
+
+      <div class="cuts-dots" id="cutsDots"></div>
+    </div>
+
+    <div class="cuts-soon" id="cutsSoon">
+      <p>More categories are coming soon &mdash; ask Ga&uacute;cho about tonight&rsquo;s chicken, lamb, pork, or seafood in the meantime.</p>
+    </div>
+  </section>
+
+</div>
+
+<script src="gaucho.js"></script>
+</body>
+</html>
