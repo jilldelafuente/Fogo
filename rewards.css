@@ -306,6 +306,44 @@
   margin-bottom: 14px;
 }
 .loyalty-confirm .loyalty-note { margin-bottom: 26px; }
+
+.loyalty-reward-unlock {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  background: var(--beige);
+  border: 1px solid rgba(33, 31, 32, 0.15);
+  border-radius: 4px;
+  padding: 16px;
+  margin: 0 0 26px;
+}
+.loyalty-reward-unlock-img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.loyalty-reward-unlock-copy { display: flex; flex-direction: column; gap: 4px; }
+.loyalty-reward-unlock-tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.loyalty-reward-unlock-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--black);
+}
+.loyalty-reward-unlock-sub {
+  font-size: 13px;
+  color: rgba(33, 31, 32, 0.6);
+}
+
 .loyalty-summary {
   text-align: left;
   background: var(--white);

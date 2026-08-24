@@ -272,8 +272,6 @@ function showReasonResults(query) {
     add.addEventListener('click', () => add.classList.toggle('on'));
   });
 
-  reasonResults.classList.add('on');
-  scrollBelowHeader(reasonResults);
 }
 
 chips.forEach((chip) => {
@@ -294,7 +292,6 @@ if (reasonReset) {
     reasonInput.value = '';
     reasonGhost.classList.remove('hide');
     reasonField.classList.remove('lit');
-    reasonResults.classList.remove('on');
     reasonSection.classList.remove('showing-results');
     chips.forEach((c) => c.classList.remove('active'));
     charIndex = 0;
