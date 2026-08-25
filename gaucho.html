@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Gaúcho — Your Table's AI Meal Assistant</title>
+<title>Gaucho - Your Table's AI Meal Assistant</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="gaucho.css">
 </head>
@@ -19,20 +19,30 @@
   <section class="gaucho-welcome" id="gauchoWelcome">
     <header class="home-topbar">
       <button type="button" class="home-menu-btn" aria-label="Menu"><span></span><span></span></button>
-      <img src="images/gaucho/home-logo.png" alt="Fogo de Chão" class="home-logo">
-      <span class="home-ai-mark"><img src="images/gaucho/diamond-mark.png" alt=""></span>
+      <img src="images/statics/fogologowhite.png" alt="Fogo de Chao" class="home-logo">
+      <span class="home-ai-mark"><img src="images/gaucho/home-ai-mark.png" alt=""></span>
     </header>
     <div class="home-topbar-divider"></div>
 
     <div class="home-content">
       <p class="home-welcome-line"><strong>Welcome</strong> Chris &amp; Family</p>
-      <img src="images/gaucho/diamond-mark.png" alt="" class="home-flame">
+      <img src="images/gaucho/home-flame-dark.png" alt="" class="home-flame">
       <h1 class="home-title">Meet<br>Guacho.</h1>
-      <p class="home-sub">Your table&rsquo;s personal meal assistant tonight.<br>Ask about the menu, get a pairing, or just say hi.</p>
+      <p class="home-sub">Your table's personal meal assistant tonight.<br>Ask about the menu, get a pairing, or just say hi.</p>
       <button type="button" class="home-start-btn" id="gauchoStartBtn">Start Chatting</button>
-      <div class="home-secondary-group">
-        <button type="button" class="home-secondary-btn">Tonight&rsquo;s Menu</button>
-        <button type="button" class="home-secondary-btn">Pay Bill</button>
+      <div class="home-nav-row">
+        <button type="button" class="home-nav-item">
+          <img src="images/gaucho/icon-view-menu.svg" alt="">
+          <span>View Menu</span>
+        </button>
+        <button type="button" class="home-nav-item">
+          <img src="images/gaucho/icon-pay-bill.svg" alt="">
+          <span>Pay Bill</span>
+        </button>
+        <button type="button" class="home-nav-item" id="homeLearnPortugueseBtn">
+          <img src="images/gaucho/icon-learn-portuguese.svg" alt="">
+          <span>Learn Portuguese</span>
+        </button>
       </div>
     </div>
   </section>
@@ -50,8 +60,7 @@
     <div class="gaucho-messages" id="gauchoMessages"></div>
 
     <div class="gaucho-quick-replies" id="gauchoQuickReplies">
-      <button type="button" class="gaucho-chip" data-action="cuts">See tonight&rsquo;s cuts</button>
-      <button type="button" class="gaucho-chip" data-action="culture">Discover your Brazilian name</button>
+      <button type="button" class="gaucho-chip" data-action="cuts">See tonight's cuts</button>
       <button type="button" class="gaucho-chip" data-q="What is churrasco?">What is Churrasco</button>
       <button type="button" class="gaucho-chip" data-q="I need a wine recommendation">I need a wine recommendation</button>
       <button type="button" class="gaucho-chip" data-q="I have a dietary restriction">Dietary restriction</button>
@@ -74,7 +83,7 @@
     </div>
 
     <nav class="cuts-tabs" id="cutsTabs">
-      <span class="cuts-tabs-eyebrow">Tonight&rsquo;s Cuts:</span>
+      <span class="cuts-tabs-eyebrow">Tonight's Cuts:</span>
       <div class="cuts-tabs-row">
         <button type="button" class="cuts-tab active" data-cat="beef">Beef</button>
         <button type="button" class="cuts-tab" data-cat="chicken">Chicken</button>
@@ -92,12 +101,12 @@
       <div class="cuts-description">
         <h2 class="cuts-name" id="cutsName">Picanha</h2>
         <span class="cuts-sub" id="cutsSub">Top Sirloin Cap</span>
-        <p class="cuts-copy" id="cutsCopy">Picanha is the cut churrasco is built around. Lightly seasoned and sliced in front of you, it&rsquo;s tender with just enough marbling to stay juicy without being heavy.</p>
+        <p class="cuts-copy" id="cutsCopy">Picanha is the cut churrasco is built around. Lightly seasoned and sliced in front of you, it's tender with just enough marbling to stay juicy without being heavy.</p>
       </div>
 
       <div class="cuts-chart">
         <div class="cuts-chart-top">
-          <span class="cuts-chart-diagram"><img src="images/gaucho/beef-chart.png" alt="" id="cutsChartImg"></span>
+          <span class="cuts-chart-diagram"><img src="images/gaucho/beef-cut-icon.svg" alt="" id="cutsChartImg"></span>
           <div>
             <span class="cuts-chart-title" id="cutsChartTitle">Top Sirloin</span>
             <p class="cuts-chart-desc" id="cutsChartDesc">It offers a bold, beefy flavor and a firm texture</p>
@@ -128,58 +137,29 @@
     </div>
 
     <div class="cuts-soon" id="cutsSoon">
-      <p>More categories are coming soon &mdash; ask Ga&uacute;cho about tonight&rsquo;s lamb, pork, or seafood in the meantime.</p>
+      <p>More categories are coming soon - ask Gaucho about tonight's lamb, pork, or seafood in the meantime.</p>
     </div>
   </section>
 
   <!-- BRAZILIAN CULTURE GAME -->
   <section class="bz-panel" id="culturePanel">
-    <div class="cuts-topbar">
+    <div class="bz-topbar">
+      <span class="bz-eyebrow">Learn Portuguese</span>
       <button type="button" class="icon-x bz-close-btn" id="cultureCloseBtn" aria-label="Close"><span></span><span></span></button>
     </div>
 
     <div class="bz-scroll">
-      <div class="bz-block">
-        <span class="bz-eyebrow">Brazilian Culture</span>
-        <h2 class="bz-title">What&rsquo;s Your<br>Brazilian Name?</h2>
-        <p class="bz-intro">Brazilians love a good nickname. Enter yours and find out what they&rsquo;d call you at the churrasco.</p>
-
-        <form class="bz-name-form" id="cultureNameForm">
-          <input type="text" id="cultureNameInput" placeholder="Type your first name" autocomplete="off" maxlength="20">
-          <button type="submit" class="bz-btn-primary">Generate</button>
-        </form>
-
-        <div class="bz-result" id="cultureResult">
-          <span class="bz-result-label">Your Brazilian table name is</span>
-          <p class="bz-result-name" id="cultureResultName">&mdash;</p>
-          <p class="bz-result-cut" id="cultureResultCut">&mdash;</p>
-          <div class="bz-fact">
-            <span class="bz-fact-label">Did you know?</span>
-            <p id="cultureFact">In Brazil, adding &ldquo;-inho&rdquo; or &ldquo;-inha&rdquo; to a name is a common way to show affection &mdash; it&rsquo;s how nicknames like Ronaldinho and Aninha came to be.</p>
-          </div>
-          <button type="button" class="bz-btn-secondary" id="cultureSpinBtn">Spin Again</button>
-        </div>
+      <div class="phrase-photo-frame">
+        <img src="" alt="" id="phraseImage">
       </div>
 
-      <div class="bz-divider"></div>
-
-      <div class="bz-block">
-        <span class="bz-eyebrow">Learn Portuguese</span>
-        <h2 class="bz-title-sm">A Phrase for the Table</h2>
-        <p class="bz-intro">Flip through a few words worth knowing before the meat starts coming around.</p>
-
-        <div class="phrase-card">
-          <span class="phrase-english" id="phraseEnglish">Cheers!</span>
-          <span class="phrase-portuguese" id="phrasePortuguese">Sa&uacute;de!</span>
-          <span class="phrase-phonetic" id="phrasePhonetic">sah-OO-jee</span>
-        </div>
-
-        <div class="phrase-nav">
-          <button type="button" class="phrase-nav-btn" id="phrasePrevBtn" aria-label="Previous phrase">&larr;</button>
-          <div class="cuts-dots" id="phraseDots"></div>
-          <button type="button" class="phrase-nav-btn" id="phraseNextBtn" aria-label="Next phrase">&rarr;</button>
-        </div>
+      <div class="phrase-caption">
+        <span class="phrase-english" id="phraseEnglish">Cheers!</span>
+        <p class="phrase-portuguese" id="phrasePortuguese">Saude!</p>
+        <span class="phrase-phonetic" id="phrasePhonetic">sah-OO-jee</span>
       </div>
+
+      <div class="cuts-dots" id="phraseDots"></div>
     </div>
   </section>
 

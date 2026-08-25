@@ -1,37 +1,37 @@
-// Gaúcho — in-restaurant AI meal assistant (mobile experience)
+// Gaucho - in-restaurant AI meal assistant (mobile experience)
 
-const GAUCHO_GREETING = "I'm Gaúcho, your table's meal assistant tonight. Ask me about the menu, get a wine pairing, flag a dietary need, or just say hi. What can I help with?";
+const GAUCHO_GREETING = "I'm Gaucho, your table's meal assistant tonight. Ask me about the menu, get a wine pairing, flag a dietary need, or just say hi. What can I help with?";
 
 const GAUCHO_RESPONSES = [
   {
     hit: ['churrasco', 'what is churrasco', 'how does this work', 'how does churrasco work'],
-    reply: "Churrasco is the Southern Brazilian tradition of fire-roasting seasoned cuts of meat and carving them tableside — continuously, until you say stop. Want to see tonight's cuts in more depth? Tap “See tonight’s cuts” below.",
+    reply: "Churrasco is the Southern Brazilian tradition of fire-roasting seasoned cuts of meat and carving them tableside - continuously, until you say stop. Want to see tonight's cuts in more depth? Tap See tonight's cuts below.",
   },
   {
     hit: ['cut', 'cuts', 'picanha', 'frango', 'chicken', 'meat'],
-    reply: "Great choice — let's pull up tonight's cuts.",
+    reply: "Great choice - let's pull up tonight's cuts.",
     action: 'cuts',
   },
   {
-    hit: ['name', 'nickname', 'portuguese', 'brazilian name', 'culture'],
-    reply: "Ooh, fun one — let's find your Brazilian table name.",
+    hit: ['portuguese', 'phrase', 'brazilian culture', 'culture', 'language'],
+    reply: "Sure thing - here's a phrase worth knowing before the meat starts coming around.",
     action: 'culture',
   },
   {
     hit: ['wine', 'pairing', 'recommend a wine', 'malbec', 'red wine', 'white wine'],
-    reply: "For the full churrasco, a Malbec holds up beautifully to the richer cuts like fraldinha and costela. If you'd rather stay lighter, ask your sommelier about our Argentine Torrontés — it's a great match for the Market Table.",
+    reply: "For the full churrasco, a Malbec holds up beautifully to the richer cuts like fraldinha and costela. If you'd rather stay lighter, ask your sommelier about our Argentine Torrontes - it's a great match for the Market Table.",
   },
   {
     hit: ['dietary', 'allergy', 'allergic', 'vegetarian', 'vegan', 'gluten', 'restriction'],
-    reply: "Noted — I've flagged this for your server. Quick tip: our Market Table is naturally gluten-free and has 30+ vegetarian items, so there's always plenty to build a full meal from.",
+    reply: "Noted - I've flagged this for your server. Quick tip: our Market Table is naturally gluten-free and has 30+ vegetarian items, so there's always plenty to build a full meal from.",
   },
   {
     hit: ['$59', 'special', 'four course', 'promo', 'offer'],
-    reply: "Tonight's special is $59 for four courses — a selection of our most popular fire-roasted cuts, the seasonal Market Table, authentic sides, and your choice of dessert. Want me to have your server walk you through it?",
+    reply: "Tonight's special is $59 for four courses - a selection of our most popular fire-roasted cuts, the seasonal Market Table, authentic sides, and your choice of dessert. Want me to have your server walk you through it?",
   },
   {
     hit: ['call', 'server', 'waiter', 'help', 'check', 'bill'],
-    reply: "On it — I've sent a notification to your server that your table needs a hand. They'll be over shortly.",
+    reply: "On it - I've sent a notification to your server that your table needs a hand. They'll be over shortly.",
   },
   {
     hit: ['rewards', 'join', 'loyalty', 'points'],
@@ -39,7 +39,7 @@ const GAUCHO_RESPONSES = [
   },
   {
     hit: ['hi', 'hello', 'hey', 'sup', "what's up"],
-    reply: "Hey! Good to have you at the table tonight. What can I help with — the menu, a pairing, or something else?",
+    reply: "Hey! Good to have you at the table tonight. What can I help with - the menu, a pairing, or something else?",
   },
 ];
 
@@ -119,6 +119,9 @@ function startGauchoChat() {
 
 if (gauchoStartBtn) gauchoStartBtn.addEventListener('click', startGauchoChat);
 
+const homeLearnPortugueseBtn = document.getElementById('homeLearnPortugueseBtn');
+if (homeLearnPortugueseBtn) homeLearnPortugueseBtn.addEventListener('click', () => openCulturePanel());
+
 if (gauchoEndBtn) {
   gauchoEndBtn.addEventListener('click', () => {
     gauchoChat.classList.remove('active');
@@ -152,7 +155,7 @@ if (gauchoQuickReplies) {
 const CUTS_DATA = {
   beef: {
     hero: 'images/gaucho/beef-hero.png',
-    chart: 'images/gaucho/beef-chart.png',
+    chart: 'images/gaucho/beef-cut-icon.svg',
     cuts: [
       {
         name: 'Picanha',
@@ -167,7 +170,7 @@ const CUTS_DATA = {
       {
         name: 'Filet Mignon',
         sub: 'Tenderloin',
-        copy: "The most tender cut on the table. Filet mignon is lean, buttery-soft, and mild — a quiet counterpoint to picanha's boldness.",
+        copy: "The most tender cut on the table. Filet mignon is lean, buttery-soft, and mild - a quiet counterpoint to picanha's boldness.",
         chartTitle: 'Tenderloin',
         chartDesc: 'Delicate texture with very little marbling',
         richness: 'Lean',
@@ -187,7 +190,7 @@ const CUTS_DATA = {
       {
         name: 'Fraldinha',
         sub: 'Bottom Sirloin Flap',
-        copy: 'Loved for its marbling, fraldinha carries a bolder, more intense flavor than picanha — a favorite for guests who want more char and more fat.',
+        copy: 'Loved for its marbling, fraldinha carries a bolder, more intense flavor than picanha - a favorite for guests who want more char and more fat.',
         chartTitle: 'Bottom Sirloin',
         chartDesc: 'Heavily marbled with a bold, beefy finish',
         richness: 'Bold',
@@ -197,7 +200,7 @@ const CUTS_DATA = {
       {
         name: 'Beef Ancho',
         sub: 'Ribeye Cap',
-        copy: 'Grilled directly over open flame, beef ancho picks up a deep char and stays impossibly juicy underneath — one of the richest cuts we carve.',
+        copy: 'Grilled directly over open flame, beef ancho picks up a deep char and stays impossibly juicy underneath - one of the richest cuts we carve.',
         chartTitle: 'Ribeye Cap',
         chartDesc: 'Heavily marbled, char-forward, very rich',
         richness: 'Very Rich',
@@ -218,7 +221,7 @@ const CUTS_DATA = {
   },
   chicken: {
     hero: 'images/gaucho/chicken-hero.png',
-    chart: 'images/gaucho/chicken-chart.png',
+    chart: 'images/gaucho/chicken-cut-icon.svg',
     cuts: [
       {
         name: 'Frango',
@@ -320,55 +323,13 @@ if (cutsRequestBtn) {
   cutsRequestBtn.addEventListener('click', () => {
     const cutName = CUTS_DATA[currentCategory].cuts[cutsIndex].name;
     closeCutsPanel();
-    addGauchoMessage(`Got it — I've let your server know you'd like the ${cutName} next.`, 'ai');
+    addGauchoMessage(`Got it - I've let your server know you'd like the ${cutName} next.`, 'ai');
   });
 }
 
-/* ---------- Brazilian culture game ---------- */
-const TABLE_PERSONALITIES = [
-  { cut: 'Picanha', tagline: "You're a Picanha — the crowd favorite. Popular, a little bit of everything, and always in demand." },
-  { cut: 'Fraldinha', tagline: "You're a Fraldinha — bold and unapologetic. You bring the flavor wherever you go." },
-  { cut: 'Alcatra', tagline: "You're an Alcatra — a classic. Reliable, timeless, and always welcome at the table." },
-  { cut: 'Filet Mignon', tagline: "You're a Filet Mignon — smooth, refined, and quietly the best part of the room." },
-  { cut: 'Costela', tagline: "You're a Costela — patient and worth the wait. Good things take time." },
-  { cut: 'Beef Ancho', tagline: "You're a Beef Ancho — a little smoky, a little intense. You leave an impression." },
-];
-
-const NAME_FACTS = [
-  'In Brazil, adding “-inho” or “-inha” to a name is a common way to show affection — it’s how nicknames like Ronaldinho and Aninha came to be.',
-  'Many Brazilians go by a nickname more than their given name — even on official ID cards and soccer jerseys.',
-  '“Gaúcho” itself is a nickname — it refers to the cowboys of Southern Brazil, where churrasco began.',
-  'Diminutives in Portuguese aren’t just for names — Brazilians use them constantly, turning "cafe" into "cafezinho" for a small, affectionate cup of coffee.',
-];
-
-function toBrazilianNickname(name) {
-  const base = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-  const lastChar = base.slice(-1).toLowerCase();
-  if (lastChar === 'a') return base.slice(0, -1) + 'inha';
-  if (lastChar === 'o' || lastChar === 'e') return base.slice(0, -1) + 'inho';
-  return base + 'inho';
-}
-
+/* ---------- Learn Portuguese ---------- */
 const culturePanel = document.getElementById('culturePanel');
 const cultureCloseBtn = document.getElementById('cultureCloseBtn');
-const cultureNameForm = document.getElementById('cultureNameForm');
-const cultureNameInput = document.getElementById('cultureNameInput');
-const cultureResult = document.getElementById('cultureResult');
-const cultureResultName = document.getElementById('cultureResultName');
-const cultureResultCut = document.getElementById('cultureResultCut');
-const cultureFact = document.getElementById('cultureFact');
-const cultureSpinBtn = document.getElementById('cultureSpinBtn');
-
-function generateBrazilianName() {
-  const name = cultureNameInput.value.trim();
-  if (!name) return;
-  const personality = TABLE_PERSONALITIES[Math.floor(Math.random() * TABLE_PERSONALITIES.length)];
-  const fact = NAME_FACTS[Math.floor(Math.random() * NAME_FACTS.length)];
-  cultureResultName.textContent = toBrazilianNickname(name);
-  cultureResultCut.textContent = personality.tagline;
-  cultureFact.textContent = fact;
-  cultureResult.classList.add('active');
-}
 
 function openCulturePanel() {
   culturePanel.classList.add('active');
@@ -380,35 +341,26 @@ function closeCulturePanel() {
 
 if (cultureCloseBtn) cultureCloseBtn.addEventListener('click', closeCulturePanel);
 
-if (cultureNameForm) {
-  cultureNameForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    generateBrazilianName();
-  });
-}
-
-if (cultureSpinBtn) cultureSpinBtn.addEventListener('click', generateBrazilianName);
-
 const PORTUGUESE_PHRASES = [
-  { english: 'Cheers!', portuguese: 'Saúde!', phonetic: 'sah-OO-jee' },
-  { english: 'Delicious', portuguese: 'Delicioso', phonetic: 'deh-lee-see-OH-zoo' },
-  { english: 'Thank you', portuguese: 'Obrigado(a)', phonetic: 'oh-bree-GAH-doo/dah' },
-  { english: 'Fire', portuguese: 'Fogo', phonetic: 'FOH-goo' },
-  { english: 'Friend', portuguese: 'Amigo(a)', phonetic: 'ah-MEE-goo/gah' },
-  { english: 'Grilled meat', portuguese: 'Churrasco', phonetic: 'shoo-HAHS-koo' },
+  { english: 'Cheers!', portuguese: 'Saude!', phonetic: 'sah-OO-jee', image: 'images/statics/image%20445.png' },
+  { english: 'Delicious', portuguese: 'Delicioso', phonetic: 'deh-lee-see-OH-zoo', image: 'images/statics/charuterie.png' },
+  { english: 'Thank you', portuguese: 'Obrigado', phonetic: 'oh-bree-GAH-doo', image: 'images/statics/image%20443.png' },
+  { english: 'Fire', portuguese: 'Fogo', phonetic: 'FOH-goo', image: 'images/statics/fire%20bg-full.png' },
+  { english: 'Friend', portuguese: 'Amigo', phonetic: 'ah-MEE-goo', image: 'images/statics/the%20bar.png' },
+  { english: 'Grilled meat', portuguese: 'Churrasco', phonetic: 'shoo-HAHS-koo', image: 'images/statics/image%20441.png' },
 ];
 
+const phraseImage = document.getElementById('phraseImage');
 const phraseEnglish = document.getElementById('phraseEnglish');
 const phrasePortuguese = document.getElementById('phrasePortuguese');
 const phrasePhonetic = document.getElementById('phrasePhonetic');
 const phraseDots = document.getElementById('phraseDots');
-const phrasePrevBtn = document.getElementById('phrasePrevBtn');
-const phraseNextBtn = document.getElementById('phraseNextBtn');
 
 let phraseIndex = 0;
 
 function renderPhrase() {
   const phrase = PORTUGUESE_PHRASES[phraseIndex];
+  phraseImage.src = phrase.image;
   phraseEnglish.textContent = phrase.english;
   phrasePortuguese.textContent = phrase.portuguese;
   phrasePhonetic.textContent = phrase.phonetic;
@@ -421,16 +373,40 @@ function renderPhrase() {
   });
 }
 
-if (phrasePrevBtn) {
-  phrasePrevBtn.addEventListener('click', () => {
-    phraseIndex = (phraseIndex - 1 + PORTUGUESE_PHRASES.length) % PORTUGUESE_PHRASES.length;
-    renderPhrase();
-  });
-}
-if (phraseNextBtn) {
-  phraseNextBtn.addEventListener('click', () => {
-    phraseIndex = (phraseIndex + 1) % PORTUGUESE_PHRASES.length;
-    renderPhrase();
-  });
-}
 if (phraseDots) renderPhrase();
+
+const bzScroll = document.querySelector('.bz-scroll');
+if (bzScroll) {
+  let swipeStartX = null;
+  let swipeStartY = null;
+
+  function swipeStart(x, y) {
+    swipeStartX = x;
+    swipeStartY = y;
+  }
+  function swipeEnd(x, y) {
+    if (swipeStartX === null) return;
+    const dx = x - swipeStartX;
+    const dy = y - swipeStartY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      phraseIndex = dx < 0
+        ? (phraseIndex + 1) % PORTUGUESE_PHRASES.length
+        : (phraseIndex - 1 + PORTUGUESE_PHRASES.length) % PORTUGUESE_PHRASES.length;
+      renderPhrase();
+    }
+    swipeStartX = null;
+    swipeStartY = null;
+  }
+
+  bzScroll.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    swipeStart(t.clientX, t.clientY);
+  }, { passive: true });
+  bzScroll.addEventListener('touchend', (e) => {
+    const t = e.changedTouches[0];
+    swipeEnd(t.clientX, t.clientY);
+  });
+
+  bzScroll.addEventListener('mousedown', (e) => swipeStart(e.clientX, e.clientY));
+  bzScroll.addEventListener('mouseup', (e) => swipeEnd(e.clientX, e.clientY));
+}
