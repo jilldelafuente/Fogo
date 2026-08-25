@@ -97,7 +97,7 @@ function openAiPanel() {
   aiPanel.classList.add('active');
   if (!aiStarted) {
     aiStarted = true;
-    aiMessages.innerHTML = '<h2 class="ai-hola">Hola!</h2>';
+    aiMessages.innerHTML = '<h2 class="ai-hola">Ola!</h2>';
     showAiTyping();
     setTimeout(() => {
       hideAiTyping();

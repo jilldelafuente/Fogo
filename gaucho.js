@@ -13,6 +13,11 @@ const GAUCHO_RESPONSES = [
     action: 'cuts',
   },
   {
+    hit: ['name', 'nickname', 'portuguese', 'brazilian name', 'culture'],
+    reply: "Ooh, fun one — let's find your Brazilian table name.",
+    action: 'culture',
+  },
+  {
     hit: ['wine', 'pairing', 'recommend a wine', 'malbec', 'red wine', 'white wine'],
     reply: "For the full churrasco, a Malbec holds up beautifully to the richer cuts like fraldinha and costela. If you'd rather stay lighter, ask your sommelier about our Argentine Torrontés — it's a great match for the Market Table.",
   },
@@ -87,6 +92,8 @@ function gauchoReplyTo(userText) {
     addGauchoMessage(match.reply, 'ai');
     if (match.action === 'cuts') {
       setTimeout(() => openCutsPanel(), 500);
+    } else if (match.action === 'culture') {
+      setTimeout(() => openCulturePanel(), 500);
     }
   }, 700 + Math.random() * 500);
 }
@@ -102,7 +109,7 @@ function sendGauchoUserMessage(text) {
 function startGauchoChat() {
   gauchoWelcome.classList.add('hide');
   gauchoChat.classList.add('active');
-  gauchoMessages.innerHTML = '<h2 class="gaucho-hola">Hola!</h2>';
+  gauchoMessages.innerHTML = '<h2 class="gaucho-hola">Ola!</h2>';
   showGauchoTyping();
   setTimeout(() => {
     hideGauchoTyping();
@@ -132,6 +139,8 @@ if (gauchoQuickReplies) {
     chip.addEventListener('click', () => {
       if (chip.dataset.action === 'cuts') {
         openCutsPanel();
+      } else if (chip.dataset.action === 'culture') {
+        openCulturePanel();
       } else {
         sendGauchoUserMessage(chip.dataset.q);
       }
@@ -314,3 +323,114 @@ if (cutsRequestBtn) {
     addGauchoMessage(`Got it — I've let your server know you'd like the ${cutName} next.`, 'ai');
   });
 }
+
+/* ---------- Brazilian culture game ---------- */
+const TABLE_PERSONALITIES = [
+  { cut: 'Picanha', tagline: "You're a Picanha — the crowd favorite. Popular, a little bit of everything, and always in demand." },
+  { cut: 'Fraldinha', tagline: "You're a Fraldinha — bold and unapologetic. You bring the flavor wherever you go." },
+  { cut: 'Alcatra', tagline: "You're an Alcatra — a classic. Reliable, timeless, and always welcome at the table." },
+  { cut: 'Filet Mignon', tagline: "You're a Filet Mignon — smooth, refined, and quietly the best part of the room." },
+  { cut: 'Costela', tagline: "You're a Costela — patient and worth the wait. Good things take time." },
+  { cut: 'Beef Ancho', tagline: "You're a Beef Ancho — a little smoky, a little intense. You leave an impression." },
+];
+
+const NAME_FACTS = [
+  'In Brazil, adding “-inho” or “-inha” to a name is a common way to show affection — it’s how nicknames like Ronaldinho and Aninha came to be.',
+  'Many Brazilians go by a nickname more than their given name — even on official ID cards and soccer jerseys.',
+  '“Gaúcho” itself is a nickname — it refers to the cowboys of Southern Brazil, where churrasco began.',
+  'Diminutives in Portuguese aren’t just for names — Brazilians use them constantly, turning "cafe" into "cafezinho" for a small, affectionate cup of coffee.',
+];
+
+function toBrazilianNickname(name) {
+  const base = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  const lastChar = base.slice(-1).toLowerCase();
+  if (lastChar === 'a') return base.slice(0, -1) + 'inha';
+  if (lastChar === 'o' || lastChar === 'e') return base.slice(0, -1) + 'inho';
+  return base + 'inho';
+}
+
+const culturePanel = document.getElementById('culturePanel');
+const cultureCloseBtn = document.getElementById('cultureCloseBtn');
+const cultureNameForm = document.getElementById('cultureNameForm');
+const cultureNameInput = document.getElementById('cultureNameInput');
+const cultureResult = document.getElementById('cultureResult');
+const cultureResultName = document.getElementById('cultureResultName');
+const cultureResultCut = document.getElementById('cultureResultCut');
+const cultureFact = document.getElementById('cultureFact');
+const cultureSpinBtn = document.getElementById('cultureSpinBtn');
+
+function generateBrazilianName() {
+  const name = cultureNameInput.value.trim();
+  if (!name) return;
+  const personality = TABLE_PERSONALITIES[Math.floor(Math.random() * TABLE_PERSONALITIES.length)];
+  const fact = NAME_FACTS[Math.floor(Math.random() * NAME_FACTS.length)];
+  cultureResultName.textContent = toBrazilianNickname(name);
+  cultureResultCut.textContent = personality.tagline;
+  cultureFact.textContent = fact;
+  cultureResult.classList.add('active');
+}
+
+function openCulturePanel() {
+  culturePanel.classList.add('active');
+}
+
+function closeCulturePanel() {
+  culturePanel.classList.remove('active');
+}
+
+if (cultureCloseBtn) cultureCloseBtn.addEventListener('click', closeCulturePanel);
+
+if (cultureNameForm) {
+  cultureNameForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    generateBrazilianName();
+  });
+}
+
+if (cultureSpinBtn) cultureSpinBtn.addEventListener('click', generateBrazilianName);
+
+const PORTUGUESE_PHRASES = [
+  { english: 'Cheers!', portuguese: 'Saúde!', phonetic: 'sah-OO-jee' },
+  { english: 'Delicious', portuguese: 'Delicioso', phonetic: 'deh-lee-see-OH-zoo' },
+  { english: 'Thank you', portuguese: 'Obrigado(a)', phonetic: 'oh-bree-GAH-doo/dah' },
+  { english: 'Fire', portuguese: 'Fogo', phonetic: 'FOH-goo' },
+  { english: 'Friend', portuguese: 'Amigo(a)', phonetic: 'ah-MEE-goo/gah' },
+  { english: 'Grilled meat', portuguese: 'Churrasco', phonetic: 'shoo-HAHS-koo' },
+];
+
+const phraseEnglish = document.getElementById('phraseEnglish');
+const phrasePortuguese = document.getElementById('phrasePortuguese');
+const phrasePhonetic = document.getElementById('phrasePhonetic');
+const phraseDots = document.getElementById('phraseDots');
+const phrasePrevBtn = document.getElementById('phrasePrevBtn');
+const phraseNextBtn = document.getElementById('phraseNextBtn');
+
+let phraseIndex = 0;
+
+function renderPhrase() {
+  const phrase = PORTUGUESE_PHRASES[phraseIndex];
+  phraseEnglish.textContent = phrase.english;
+  phrasePortuguese.textContent = phrase.portuguese;
+  phrasePhonetic.textContent = phrase.phonetic;
+
+  phraseDots.innerHTML = PORTUGUESE_PHRASES.map((_, i) =>
+    `<button type="button" class="cuts-dot${i === phraseIndex ? ' active' : ''}" data-i="${i}" aria-label="Phrase ${i + 1}"></button>`
+  ).join('');
+  phraseDots.querySelectorAll('.cuts-dot').forEach((dot) => {
+    dot.addEventListener('click', () => { phraseIndex = Number(dot.dataset.i); renderPhrase(); });
+  });
+}
+
+if (phrasePrevBtn) {
+  phrasePrevBtn.addEventListener('click', () => {
+    phraseIndex = (phraseIndex - 1 + PORTUGUESE_PHRASES.length) % PORTUGUESE_PHRASES.length;
+    renderPhrase();
+  });
+}
+if (phraseNextBtn) {
+  phraseNextBtn.addEventListener('click', () => {
+    phraseIndex = (phraseIndex + 1) % PORTUGUESE_PHRASES.length;
+    renderPhrase();
+  });
+}
+if (phraseDots) renderPhrase();

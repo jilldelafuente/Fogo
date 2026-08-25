@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fogo for Boys Night — Fogo de Chão</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="boys-night.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="nav" id="nav">
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu">
+      <span class="menu-lines"><span></span><span></span></span>
+      <span class="menu-label">Menu</span>
+    </button>
+
+    <a href="index.html" class="nav-brand">
+      <img src="images/statics/fogologo.png" alt="Fogo de Chão" class="nav-logo">
+    </a>
+
+    <div class="nav-actions">
+      <a href="#reserve" class="btn btn-clay nav-reservations">Reservations</a>
+      <button type="button" class="nav-ai-btn" id="navAiBtn" aria-label="Ask Gaúcho">
+        <img src="Icons/ai.png" alt="" class="nav-ai-icon">
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mega-nav" id="megaNav">
+  <div class="mega-nav-body">
+    <nav class="mega-nav-links">
+      <a href="index.html#">Our Menu</a>
+      <a href="index.html#">Locations</a>
+      <a href="index.html#">Our Story</a>
+      <a href="index.html#">Group Dining</a>
+      <a href="index.html#">Order-to-Go</a>
+      <a href="index.html#">Catering</a>
+    </nav>
+
+    <div class="mega-nav-promo">
+      <img src="images/statics/navimage.png" alt="" class="mega-nav-promo-img">
+      <img src="images/statics/fogorewardswhite.png" alt="Fogo Rewards" class="mega-nav-promo-logo">
+      <h3 class="mega-nav-promo-title">Your next meal<br>could be half off.</h3>
+      <a href="fogo-rewards.html" class="btn btn-clay mega-nav-promo-cta">Learn More</a>
+    </div>
+  </div>
+
+  <hr class="mega-nav-divider">
+
+  <div class="mega-nav-social">
+    <a href="#" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.25-1.5 1.6-1.5H16.5V4.3c-.28-.04-1.24-.12-2.36-.12-2.34 0-3.94 1.43-3.94 4.04V10.5H7.5v3H10.2V21h3.3Z"/></svg>
+    </a>
+    <a href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/>
+        <circle cx="12" cy="12" r="4.2"/>
+        <circle cx="17.1" cy="6.9" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="#" aria-label="X">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4l7.2 8.6L4.4 20h2.4l5.7-6.2L17.3 20H20l-7.5-8.9L19.9 4h-2.4l-5.3 5.7L7.7 4H4Z"/></svg>
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M10.3 9.6v4.8l4.4-2.4-4.4-2.4Z"/>
+      </svg>
+    </a>
+    <a href="#" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 3h2.4c.2 1.9 1.5 3.3 3.6 3.5v2.5c-1.3 0-2.6-.4-3.6-1.1v6.4a5 5 0 1 1-4-4.9v2.6a2.4 2.4 0 1 0 1.6 2.3V3Z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- AI CONCIERGE (Gaúcho) -->
+<div class="ai-backdrop" id="aiBackdrop"></div>
+<aside class="ai-panel" id="aiPanel">
+  <header class="ai-panel-header">
+    <span class="ai-panel-identity">
+      <span class="ai-panel-avatar"><img src="Icons/ai.png" alt=""></span>
+      <span class="ai-panel-name">Gaucho</span>
+    </span>
+    <button type="button" class="ai-panel-close" id="aiCloseBtn" aria-label="Close">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="ai-panel-messages" id="aiMessages"></div>
+
+  <div class="ai-panel-quick-replies" id="aiQuickReplies">
+    <button type="button" class="ai-chip" data-q="Can you help me reserve a table?">Reserve a table</button>
+    <button type="button" class="ai-chip" data-q="What is churrasco?">What is churrasco?</button>
+    <button type="button" class="ai-chip" data-q="What's on the menu?">Menu highlights</button>
+    <button type="button" class="ai-chip" data-q="Tell me about Fogo Rewards">Fogo Rewards</button>
+    <button type="button" class="ai-chip" data-q="Do you host private events?">Private events</button>
+    <button type="button" class="ai-chip" data-q="What are your hours?">Hours &amp; locations</button>
+  </div>
+
+  <form class="ai-panel-input-row" id="aiForm">
+    <input type="text" id="aiInput" placeholder="Ask Ga&uacute;cho anything&hellip;" autocomplete="off">
+    <button type="submit" class="ai-send-btn" aria-label="Send">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15.5M13 5.5 19.5 12 13 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+</aside>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="bn-hero">
+    <span class="bn-hero-eyebrow">Bachelor Party Headquarters</span>
+    <h1 class="bn-hero-title">Fogo for Boys Night.</h1>
+    <p class="bn-hero-sub">You asked where to take the crew before the big day. Endless fire-roasted meat, a table built for the whole group, and a room loud enough for every toast — here&rsquo;s why this is where it lands.</p>
+    <div class="cta-row bn-hero-ctas">
+      <a href="#reserve" class="btn btn-clay">Reserve for Your Crew</a>
+      <a href="#send" class="btn btn-outline-clay">See the Full Spread</a>
+    </div>
+  </section>
+
+  <!-- HERO IMAGE -->
+  <section class="hero-image bn-hero-image">
+    <div class="bn-hero-panel">
+      <img src="images/statics/image 442.png" alt="A gaúcho chef presenting a freshly carved cut of picanha tableside" class="bn-hero-panel-img">
+    </div>
+    <div class="bn-hero-panel">
+      <img src="images/statics/the bar.png" alt="Friends toasting cocktails at Bar Fogo" class="bn-hero-panel-img">
+      <div class="hero-overlay">
+        <span class="bn-hero-image-tag">Groups of 6 to 20</span>
+        <h2 class="bn-hero-image-title">One Table.<br>Zero Chill.</h2>
+        <div class="cta-row">
+          <a href="#reserve" class="btn btn-clay">Reserve Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THE CREW ENDS UP HERE -->
+  <section class="bn-why">
+    <h2 class="bn-section-title">Why the Crew Ends Up Here</h2>
+    <div class="bn-why-grid">
+      <div class="bn-why-card">
+        <span class="bn-why-num">01</span>
+        <h3>Endless Meat</h3>
+        <p>Sixteen fire-roasted cuts, carved tableside, on a loop until somebody finally taps out.</p>
+      </div>
+      <div class="bn-why-card">
+        <span class="bn-why-num">02</span>
+        <h3>Big Table Energy</h3>
+        <p>Round tables built for groups of 6 to 20. Everyone&rsquo;s in the same conversation, all night.</p>
+      </div>
+      <div class="bn-why-card">
+        <span class="bn-why-num">03</span>
+        <h3>Bar Fogo</h3>
+        <p>Whiskey flights, cocktails, and a bar that keeps going after the last skewer.</p>
+      </div>
+      <div class="bn-why-card">
+        <span class="bn-why-num">04</span>
+        <h3>Zero Fuss</h3>
+        <p>No menus to pass around, no one waiting on an order. More time roasting the groom.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FULL SEND -->
+  <section class="bn-send" id="send">
+    <div class="bn-send-media">
+      <img src="images/statics/skewerbg.jpg" alt="" class="bn-send-bg">
+      <img src="images/statics/meatskewer.png" alt="Skewer of fire-roasted meat, carved tableside" class="bn-send-skewer">
+    </div>
+    <div class="bn-send-copy">
+      <span class="bn-send-eyebrow">The Group Package</span>
+      <h2 class="bn-send-title">The Full Churrasco Experience</h2>
+      <p class="bn-send-text">Continuous tableside carving of every cut, the full Market Table, and a pace that&rsquo;s entirely up to your group. No ordering, no pauses &mdash; just an endless rotation of fire-roasted meat until the table&rsquo;s had enough.</p>
+      <div class="cta-row">
+        <a href="#reserve" class="btn btn-clay">Reserve the Full Send</a>
+        <a href="#" class="btn btn-outline-clay">Ask About Private Dining</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAR FOGO -->
+  <section class="bn-bar">
+    <div class="bn-bar-media">
+      <img src="images/statics/sips.png" alt="Handcrafted cocktail at Bar Fogo">
+    </div>
+    <div class="bn-bar-copy">
+      <span class="bn-bar-eyebrow">Fuel for the Night</span>
+      <h2>Bar Fogo</h2>
+      <p>Whiskey flights, ice-cold beer, and cocktails that don&rsquo;t stop when dinner does. Bar Fogo runs later than the dining room &mdash; perfect for round two.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-clay">View Bar Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="bn-testimonial">
+    <blockquote class="bn-quote">
+      <p>&ldquo;We came in eight deep the night before the wedding. Fogo didn&rsquo;t just feed us &mdash; it became the pregame.&rdquo;</p>
+      <span class="bn-quote-attr">Bachelor Party of 8 &middot; Austin, TX</span>
+    </blockquote>
+    <img src="images/statics/the bar.png" alt="Friends toasting cocktails at Bar Fogo" class="bn-testimonial-img">
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="bn-final">
+    <h2 class="bn-final-title">Fire Up the Crew.</h2>
+    <p class="bn-final-sub">Round tables for groups of 6 to 20. Reserve now, or ask about buying out the room for the whole weekend.</p>
+    <div class="cta-row bn-final-ctas">
+      <a href="#" class="btn btn-clay" id="reserve">Reserve for Your Crew</a>
+      <a href="fogo-rewards.html" class="btn btn-outline-beige">Join Fogo Rewards</a>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <img src="Icons/flame.png" alt="" class="divider-flame">
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h5>About Us</h5>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Fogo Rewards</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Find</h5>
+      <ul>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Lifestyle &amp; Nutrition</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Fogo De Chão UK</a></li>
+        <li><a href="#">Fogo De Chão Brazil</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Order</h5>
+      <ul>
+        <li><a href="#">Reservations</a></li>
+        <li><a href="#">Gift Cards</a></li>
+        <li><a href="#">Group &amp; Private Dining</a></li>
+        <li><a href="#">Catering &amp; To-Go</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Inquiries</h5>
+      <ul>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Global Development</a></li>
+        <li><a href="#">Donation Requests</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Fogo Rewards FAQs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <img src="images/statics/fogologo.png" alt="Fogo de Chão" class="footer-brand">
+    <span class="footer-legal">&copy; 2026 Fogo de Chão. Prototype for pitch purposes only.</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="ai-concierge.js"></script>
+</body>
+</html>
