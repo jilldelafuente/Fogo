@@ -1,11 +1,12 @@
 // Gaúcho — website AI concierge (desktop widget, matches gaucho.js aesthetic/pattern)
 
-const AI_GREETING = "I'm Gaúcho. I can help you schedule a reservation, book a large party, answer menu questions, suggest a wine pairing, or fill you in on Fogo Rewards. What can I help with?";
+const AI_GREETING = "I'm Selma. I can help you schedule a reservation, book a large party, answer menu questions, suggest a wine pairing, or fill you in on Fogo Rewards. What can I help with?";
 
 const AI_RESPONSES = [
   {
     hit: ['reservation', 'reserve', 'table', 'book'],
-    reply: "I can help with that — head to our reservations page to pick a time, or tell me the party size and date and I'll flag it for our host stand.",
+    reply: "Happy to help — let's get your table booked.",
+    action: 'reserve',
   },
   {
     hit: ['churrasco', 'how does this work'],
@@ -37,7 +38,7 @@ const AI_FALLBACK = "Great question — I'll make sure our team follows up. In t
 
 function matchAiConcierge(text) {
   const q = text.toLowerCase();
-  return (AI_RESPONSES.find((r) => r.hit.some((h) => q.includes(h))) || { reply: AI_FALLBACK }).reply;
+  return AI_RESPONSES.find((r) => r.hit.some((h) => q.includes(h))) || { reply: AI_FALLBACK };
 }
 
 const aiBackdrop = document.getElementById('aiBackdrop');
@@ -49,7 +50,11 @@ const aiCloseBtn = document.getElementById('aiCloseBtn');
 const navAiBtn = document.getElementById('navAiBtn');
 const aiQuickReplies = document.getElementById('aiQuickReplies');
 
+const DEFAULT_QUICK_REPLIES_HTML = aiQuickReplies ? aiQuickReplies.innerHTML : '';
+const DEFAULT_INPUT_PLACEHOLDER = aiInput ? aiInput.placeholder : '';
+
 let aiStarted = false;
+let reservation = null; // { step: 'party' | 'date' | 'time' | 'name', party, date, time, name }
 
 function scrollAiToBottom() {
   aiMessages.scrollTop = aiMessages.scrollHeight;
@@ -76,11 +81,113 @@ function hideAiTyping() {
   document.getElementById('aiTypingIndicator')?.remove();
 }
 
+function setAiQuickReplies(chips) {
+  if (!aiQuickReplies) return;
+  aiQuickReplies.innerHTML = chips
+    .map((c) => `<button type="button" class="ai-chip" data-q="${c.value}">${c.label}</button>`)
+    .join('');
+}
+
+function restoreDefaultQuickReplies() {
+  if (aiQuickReplies) aiQuickReplies.innerHTML = DEFAULT_QUICK_REPLIES_HTML;
+  if (aiInput) aiInput.placeholder = DEFAULT_INPUT_PLACEHOLDER;
+}
+
+// Next 6 selectable days, OpenTable-style, starting today
+function buildReservationDates() {
+  const out = [];
+  const today = new Date();
+  for (let i = 0; i < 6; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    let label;
+    if (i === 0) label = 'Today';
+    else if (i === 1) label = 'Tomorrow';
+    else label = `${d.toLocaleDateString('en-US', { weekday: 'short' })} ${d.getDate()}`;
+    out.push(label);
+  }
+  return out;
+}
+
+const RESERVATION_TIMES = ['5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM', '8:00 PM'];
+
+function startReservationFlow() {
+  reservation = { step: 'party' };
+  showAiTyping();
+  setTimeout(() => {
+    hideAiTyping();
+    addAiMessage('First — how many people in your party?', 'ai');
+    setAiQuickReplies(
+      ['2', '3', '4', '5', '6', '8 or more'].map((v) => ({ label: v, value: v }))
+    );
+  }, 500);
+}
+
+function cancelReservationFlow() {
+  reservation = null;
+  addAiMessage("No problem — let me know whenever you're ready to book.", 'ai');
+  restoreDefaultQuickReplies();
+}
+
+function advanceReservation(value) {
+  showAiTyping();
+  setTimeout(() => {
+    hideAiTyping();
+    const step = reservation.step;
+
+    if (step === 'party') {
+      reservation.party = value;
+      reservation.step = 'date';
+      addAiMessage(`Party of ${value} — got it. What day works?`, 'ai');
+      setAiQuickReplies(buildReservationDates().map((d) => ({ label: d, value: d })));
+    } else if (step === 'date') {
+      reservation.date = value;
+      reservation.step = 'time';
+      addAiMessage(`${value} it is. What time?`, 'ai');
+      setAiQuickReplies(RESERVATION_TIMES.map((t) => ({ label: t, value: t })));
+    } else if (step === 'time') {
+      reservation.time = value;
+      reservation.step = 'name';
+      addAiMessage("Perfect. What name should we put the reservation under?", 'ai');
+      setAiQuickReplies([]);
+      if (aiInput) aiInput.placeholder = 'Type the name for your reservation…';
+    } else if (step === 'name') {
+      reservation.name = value;
+      reservation.step = 'notes';
+      addAiMessage(
+        "Last thing — anything specific we should know? Dietary considerations, allergies, or anything about the guest experience that'd make the visit better.",
+        'ai'
+      );
+      setAiQuickReplies([{ label: 'Nothing to add', value: 'Nothing to add' }]);
+      if (aiInput) aiInput.placeholder = 'Type any details…';
+    } else if (step === 'notes') {
+      reservation.notes = value;
+      finishReservation();
+    }
+  }, 700 + Math.random() * 500);
+}
+
+function finishReservation() {
+  const { party, date, time, name, notes } = reservation;
+  const hasNotes = notes && notes.toLowerCase() !== 'nothing to add';
+  const noteLine = hasNotes ? ` I've noted: "${notes}."` : '';
+  addAiMessage(
+    `You're all set, ${name} — party of ${party} on ${date} at ${time}.${noteLine} We'll have your table ready. See you soon!`,
+    'ai'
+  );
+  reservation = null;
+  restoreDefaultQuickReplies();
+}
+
 function aiReplyTo(userText) {
   showAiTyping();
   setTimeout(() => {
     hideAiTyping();
-    addAiMessage(matchAiConcierge(userText), 'ai');
+    const match = matchAiConcierge(userText);
+    addAiMessage(match.reply, 'ai');
+    if (match.action === 'reserve') {
+      setTimeout(() => startReservationFlow(), 500);
+    }
   }, 700 + Math.random() * 500);
 }
 
@@ -89,7 +196,16 @@ function sendAiUserMessage(text) {
   if (!trimmed) return;
   addAiMessage(trimmed, 'user');
   aiInput.value = '';
-  aiReplyTo(trimmed);
+
+  if (reservation) {
+    if (['cancel', 'never mind', 'nevermind', 'stop'].includes(trimmed.toLowerCase())) {
+      cancelReservationFlow();
+    } else {
+      advanceReservation(trimmed);
+    }
+  } else {
+    aiReplyTo(trimmed);
+  }
 }
 
 function openAiPanel() {
@@ -112,6 +228,8 @@ function closeAiPanel() {
   aiMessages.innerHTML = '';
   aiInput.value = '';
   aiStarted = false;
+  reservation = null;
+  restoreDefaultQuickReplies();
 }
 
 if (navAiBtn) navAiBtn.addEventListener('click', openAiPanel);
@@ -126,7 +244,9 @@ if (aiForm) {
 }
 
 if (aiQuickReplies) {
-  aiQuickReplies.querySelectorAll('.ai-chip').forEach((chip) => {
-    chip.addEventListener('click', () => sendAiUserMessage(chip.dataset.q));
+  aiQuickReplies.addEventListener('click', (e) => {
+    const chip = e.target.closest('.ai-chip');
+    if (!chip) return;
+    sendAiUserMessage(chip.dataset.q);
   });
 }

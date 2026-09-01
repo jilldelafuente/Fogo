@@ -1,6 +1,6 @@
 // Gaucho - in-restaurant AI meal assistant (mobile experience)
 
-const GAUCHO_GREETING = "I'm Gaucho, your table's meal assistant tonight. Ask me about the menu, get a wine pairing, flag a dietary need, or just say hi. What can I help with?";
+const GAUCHO_GREETING = "I'm Selma, your table's meal assistant tonight. Ask me about the menu, get a wine pairing, flag a dietary need, or just say hi. What can I help with?";
 
 const GAUCHO_RESPONSES = [
   {
@@ -342,13 +342,15 @@ function closeCulturePanel() {
 if (cultureCloseBtn) cultureCloseBtn.addEventListener('click', closeCulturePanel);
 
 const PORTUGUESE_PHRASES = [
-  { english: 'Cheers!', portuguese: 'Saude!', phonetic: 'sah-OO-jee', image: 'images/statics/image%20445.png' },
-  { english: 'Delicious', portuguese: 'Delicioso', phonetic: 'deh-lee-see-OH-zoo', image: 'images/statics/charuterie.png' },
-  { english: 'Thank you', portuguese: 'Obrigado', phonetic: 'oh-bree-GAH-doo', image: 'images/statics/image%20443.png' },
-  { english: 'Fire', portuguese: 'Fogo', phonetic: 'FOH-goo', image: 'images/statics/fire%20bg-full.png' },
-  { english: 'Friend', portuguese: 'Amigo', phonetic: 'ah-MEE-goo', image: 'images/statics/the%20bar.png' },
-  { english: 'Grilled meat', portuguese: 'Churrasco', phonetic: 'shoo-HAHS-koo', image: 'images/statics/image%20441.png' },
+  { english: 'Cheers!', portuguese: 'Saude!', phonetic: 'sah-OO-jee', image: 'images/gaucho/phrases/cheers.jpg' },
+  { english: 'Delicious', portuguese: 'Delicioso', phonetic: 'deh-lee-see-OH-zoo', image: 'images/gaucho/phrases/delicious.jpg' },
+  { english: 'Thank you', portuguese: 'Obrigado', phonetic: 'oh-bree-GAH-doo', image: 'images/gaucho/phrases/thankyou.jpg' },
+  { english: 'Fire', portuguese: 'Fogo', phonetic: 'FOH-goo', image: 'images/gaucho/phrases/fire.jpg' },
+  { english: 'Friend', portuguese: 'Amigo', phonetic: 'ah-MEE-goo', image: 'images/gaucho/phrases/friend.jpg' },
+  { english: 'Grilled meat', portuguese: 'Churrasco', phonetic: 'shoo-HAHS-koo', image: 'images/gaucho/phrases/churrasco.jpg' },
 ];
+
+PORTUGUESE_PHRASES.forEach((phrase) => { new Image().src = phrase.image; });
 
 const phraseImage = document.getElementById('phraseImage');
 const phraseEnglish = document.getElementById('phraseEnglish');
